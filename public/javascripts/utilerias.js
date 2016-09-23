@@ -5,9 +5,3 @@ function disablethis(item){
                     $("#"+item).fadeOut("slow");
                 }
             }
-
-function gotodiv(e,div){
-    $('#'+'html,body').animate({
-    scrollTop: $("#scrollToHere").offset().top
-}, 2000);
-}

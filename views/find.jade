@@ -1,0 +1,129 @@
+doctype 
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/main.css')
+    //if lte IE 9
+      link(rel='stylesheet', href='assets/css/ie9.css')
+    //if lte IE 8
+      link(rel='stylesheet', href='assets/css/ie8.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
+    script(src='/javascripts/jquery-3.1.0.min.js')
+    script(src='/javascripts/jquery.min.js')
+    script(src='/javascripts/skel.min.js')
+    script(src='/javascripts/util.js')
+    script(src='/javascripts/main.js')
+    script(src='/javascripts/checkforms.js')
+
+  body.single
+    // Wrapper
+    #wrapper
+      // Header
+      header#header
+        h1
+          a(href='#') Future Imperfect
+        nav.links
+          ul
+            li
+              a(href='#') Lorem
+            li
+              a(href='#') Ipsum
+            li
+              a(href='#') Feugiat
+            li
+              a(href='#') Tempus
+            li
+              a(href='#') Adipiscing
+        nav.main
+          ul
+            li.search
+              a.fa-search(href='#search') Search
+              form#search(method='get', action='#')
+                input(type='text', name='query', placeholder='Search')
+            li.menu
+              a.fa-bars(href='#menu') Menu
+      // Menu
+      section#menu
+        // Search
+        section
+          form.search(method='get', action='#')
+            input(type='text', name='query', placeholder='Search')
+        // Links
+        section
+          ul.links
+            li
+              a(href='#')
+                h3 Lorem ipsum
+                p Feugiat tempus veroeros dolor
+            li
+              a(href='#')
+                h3 Dolor sit amet
+                p Sed vitae justo condimentum
+            li
+              a(href='#')
+                h3 Feugiat veroeros
+                p Phasellus sed ultricies mi congue
+            li
+              a(href='#')
+                h3 Etiam sed consequat
+                p Porta lectus amet ultricies
+      // Main
+      #main
+        // Post
+        if(typeof(datapost) != "undefined")
+            if(datapost != "")
+                each item in datapost
+                    article#artinisesion.post(style="margin: 0 0 1em 0;padding: 0em 3em 0em 3em;")
+                        header(id="title" style="padding:0;margin:0;border-bottom: 0;")
+                            .title
+                                h2
+                                    a(href="javascript:void(0)") #{item.Titulo}
+                                p #{item.SubTitulo}
+                                p(style='margin-top:-20px;')
+                                code Tags:
+                                    each key in item.Tags
+                                        form(id="my_form#{key.texttag}",method="post", action="/post/find",style="margin:0;float:left;")
+                                            <input type="hidden" name="query" value="#{key.texttag}">
+                                        a(href="javascript:void(0)", onclick="document.getElementById('my_form#{key.texttag}').submit();")  #{key.texttag}       
+                                                
+                            .meta
+                                time.published(datetime='2015-11-01') #{item.Fecha}
+                                a.author(href='#')
+                                    span.name Javier Vargas
+                                    img(src='/images/avatar.jpg', alt='')
+            else
+                article#artinisesion.post(style="margin: 0 0 1em 0;padding: 0em 3em 0em 3em;")
+                    header(style="padding:0;margin:0;border-bottom: 0;")
+                        .title
+                            h2(style="text-align:center;")
+                                a(href="javascript:void(0)") Datos no encontrados
+                            p(style="text-align:center;") 
+                                a(href="/") Ir al inicio 
+                                |o 
+                                a(href="javascript:void(0)") Reportar Un Error
+                            p(style='margin-top:-20px;')
+                                
+      // Footer
+      section#footer
+        ul.icons
+          li
+            a.fa-twitter(href='#')
+              span.label Twitter
+          li
+            a.fa-facebook(href='#')
+              span.label Facebook
+          li
+            a.fa-instagram(href='#')
+              span.label Instagram
+          li
+            a.fa-rss(href='#')
+              span.label RSS
+          li
+            a.fa-envelope(href='#')
+              span.label Email
+        p.copyright
+          | © Untitled. Design: 
+          a(href='http://html5up.net') HTML5 UP
+          | . Images: 
+          a(href='http://unsplash.com') Unsplash
+          | .

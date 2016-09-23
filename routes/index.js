@@ -13,13 +13,19 @@ module.exports = function(app){
     app.get('/post', function(req, res){
         if(req.query.sif != null){
             modelPosts.posts.list({"_id": modelPosts.posts.getObjectId(req.query.sif)},function(e, resp){
-                console.log(resp);
                 res.render('post', { error:'', datapost: resp });
 		    })
         }
         else{            
             res.redirect('/');
         }
+	})
+    
+    app.post('/post/find', function(req, res){
+        var findobj = (req.body.query.includes("#")==false) ? {"Titulo": new RegExp(req.body.query, 'i')}:{"Tags.texttag": req.body.query};
+        modelPosts.posts.list(findobj,function(e, resp){
+            res.render('find', { error:'', datapost: resp });
+        })
 	})
     
     //Cuenta
