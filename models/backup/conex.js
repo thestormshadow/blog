@@ -1,15 +1,13 @@
 var Db = require('mongodb').Db;
 var Server = require('mongodb').Server;
 
-var dPort = 45632;
-var dHost = "ds045632.mlab.com";
+var dPort = 27017;
+var dHost = "localhost";
 var dName = "blogjvr94";
-var dUser = "jvr_bloglab";
-var dPassw = "25661483";
 
 var BLOG = {};
 
-BLOG.db = new Db(dName, new Server(dHost, dPort, ,, {auto_reconnect: true},{}));
+BLOG.db = new Db(dName, new Server(dHost, dPort, {auto_reconnect: true},{}));
 BLOG.db.open(function(e,d){
 	if(e){        
 		console.log(e)
