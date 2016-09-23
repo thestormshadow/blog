@@ -1,5 +1,6 @@
 var modelPosts = require('../models/posts') 
-var modelcuenta = require('../models/cuenta') 
+var modelcuentas = require('../models/cuentas') 
+var modelusuarios = require('../models/usuarios')
 
 module.exports = function(app){
 	
@@ -30,7 +31,7 @@ module.exports = function(app){
     
     //Cuenta
     app.get('/cuenta/login', function(req, res){
-        if (req.session.usuario == null){
+        if (req.session.idCuenta == null){
             res.render('cuenta', { type:'login' });
         }
         else{
@@ -40,7 +41,7 @@ module.exports = function(app){
 	})
     
     app.get('/cuenta/registro', function(req, res){
-        if (req.session.usuario == null){
+        if (req.session.idCuenta == null){
             res.render('cuenta', { type:'registro'});
         }
         else{
@@ -55,18 +56,19 @@ module.exports = function(app){
     
     app.post('/cuenta/login/checklogin', function(req, res){
         if(req.param('isUsuario') != "" && req.param('isPassword') != "")
-            {
-                modelcuenta.usuarios.checkLogin({
-                Usuario:req.body.isUsuario,
-                Password:req.body.isPassword
-                }, function(e, subs){
-                    if(subs.Responseprop == true){
-                        req.session.usuario = req.body.isUsuario;
-                        req.session.idusuario = subs.resulted[0]._id;
-                        req.session.nombre = subs.resulted[0].Nombre+" "+subs.resulted[0].Apellidos;
-                        req.session.correo = subs.resulted[0].Correo;
-                        req.session.tipousuario = subs.resulted[0].Tipo;
-                        res.redirect('/');
+            {       
+                modelcuentas.cuentas.checkLogin({Usuario:req.param('isUsuario'), Password:req.param('isPassword')}, function(e, subs){
+                    if(subs.Responseprop == true){                
+                       req.session.idCuenta = subs.resulted[0]._id; 
+                       modelusuarios.usuarios.list({idCuenta:''+subs.resulted[0]._id+''}, function(e,respon){
+                            if(respon != null){
+                                req.session.idUsuario = respon[0]._id;
+                                req.session.nombre = respon[0].Nombre;
+                                req.session.correo = subs.resulted[0].Correo;
+                                req.session.tipousuario = subs.resulted[0].Tipo;
+                                res.redirect('/');
+                            }
+                        })                  
                     }else{
                         res.redirect('/cuenta/login');
                     }
@@ -89,28 +91,39 @@ module.exports = function(app){
     app.post('/cuenta/registro/checkregistro', function(req, res){
         if(req.param('RegPassword') == req.param('RegRPassword'))
             {
-                modelcuenta.usuarios.registrar({
-                Nombre: req.param('RegNombre'),
-                Apellidos: req.param('RegApellidos'),
-                Correo: req.param('RegCorreo'),
-                Pais: req.param('pais'),
-                Usuario: req.param('RegUsuario'),
-                Password: req.param('RegPassword'),
-                Tipo: 1,
-                CorreoConfirm: 1,
-                Estatus: 1
-                }, function(o,callback){
-			         modelcuenta.usuarios.checkLogin({
+                modelcuentas.cuentas.registrar({
+                    Usuario:req.param('RegUsuario'),
+                    Password:req.param('RegPassword'),
+                    Correo:req.param('RegCorreo'),
+                    Tipo:1,
+                    AvisoPrivacidad:0,
+                    CorreoConfirm:1,
+                    Estatus:1
+                },function(e, resultCuenta){
+                    modelusuarios.usuarios.registrar({
+                    idCuenta:''+resultCuenta[0]._id+'',
+                    Nombre:req.param('RegNombre'),
+                    Apellidos:req.param('RegApellidos'),                
+                    Pais:req.param('pais'),
+                    Estatus: 1
+                    },function(e,resultUsuario){
+                        modelcuentas.cuentas.checkLogin({
                         Usuario: req.param('RegUsuario'),
                         Password: req.param('RegPassword')
-                    }, function(e, subs){
-                        if(subs == true){
-                            res.redirect('/');
-                        }else{
-                            res.redirect('/cuenta/login');
-                        }
+                        },function(e, subs){
+                            if(subs.Responseprop == true){
+                                req.session.idCuenta = resultCuenta[0]._id;
+                                req.session.idUsuario = resultUsuario[0]._id;
+                                req.session.nombre = resultUsuario[0].Nombre;
+                                req.session.correo = resultCuenta[0].Correo;
+                                req.session.tipousuario = resultCuenta[0].Tipo;
+                                res.redirect('/');        
+                            }else{
+                                res.redirect('/cuenta/login');
+                            }
+                        })
                     })
-		          })
+                })
             }
     })
     

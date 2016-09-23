@@ -52,7 +52,7 @@ block content
                 section
                     ul.actions.vertical
                         li
-                            if(session.usuario == null)
+                            if(session.idCuenta == null)
                                 a#login.button.big.fit(href='/cuenta/login') Iniciar Sesión
                             else
                                 p Hola! #{session.nombre}.

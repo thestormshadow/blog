@@ -18,6 +18,7 @@ BLOG.db.open(function(e,d){
 
 BLOG.posts = BLOG.db.collection('posts');
 BLOG.usuarios = BLOG.db.collection('usuarios');
+BLOG.cuentas = BLOG.db.collection('cuentas');
 BLOG.comentariosPost = BLOG.db.collection('comentariosPost');
 BLOG.respuestasComentPost = BLOG.db.collection('respuestasComentPost');
 
