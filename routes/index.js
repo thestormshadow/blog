@@ -7,6 +7,7 @@ module.exports = function(app){
     //post
 	app.get('/', function(req, res){
 		modelPosts.posts.list({},function(e, resp){
+            console.log(resp);
 			res.render('index', { error:'', dataposts: resp });
 		})		
 	})
