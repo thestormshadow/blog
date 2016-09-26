@@ -1,0 +1,166 @@
+
+doctype 
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/main.css')
+    //if lte IE 9
+      link(rel='stylesheet', href='assets/css/ie9.css')
+    //if lte IE 8
+      link(rel='stylesheet', href='assets/css/ie8.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
+    script(src='/javascripts/jquery-3.1.0.min.js')
+    script(src='/javascripts/jquery.min.js')
+    script(src='/javascripts/skel.min.js')
+    script(src='/javascripts/util.js')
+    script(src='/javascripts/main.js')
+    script(src='/javascripts/checkforms.js')
+
+  body.single
+    // Wrapper
+    #wrapper
+      // Header
+      header#header
+        h1
+          a(href='#') Future Imperfect
+        nav.links
+          ul
+            li
+              a(href='#') Lorem
+            li
+              a(href='#') Ipsum
+            li
+              a(href='#') Feugiat
+            li
+              a(href='#') Tempus
+            li
+              a(href='#') Adipiscing
+        nav.main
+          ul
+            li.search
+              a.fa-search(href='#search') Search
+              form#search(method='get', action='#')
+                input(type='text', name='query', placeholder='Search')
+            li.menu
+              a.fa-bars(href='#menu') Menu
+      // Menu
+      section#menu
+        // Search
+        section
+          form.search(method='get', action='#')
+            input(type='text', name='query', placeholder='Search')
+        // Links
+        section
+          ul.links
+            li
+              a(href='#')
+                h3 Lorem ipsum
+                p Feugiat tempus veroeros dolor
+            li
+              a(href='#')
+                h3 Dolor sit amet
+                p Sed vitae justo condimentum
+            li
+              a(href='#')
+                h3 Feugiat veroeros
+                p Phasellus sed ultricies mi congue
+            li
+              a(href='#')
+                h3 Etiam sed consequat
+                p Porta lectus amet ultricies
+      // Main
+      #main
+        // Post
+        if type == "login"
+            form(method="post", action="login/checklogin", onsubmit="return EnviarLogin();")
+                article#artinisesion.post
+                    header
+                        .title
+                            center
+                                h2
+                                    a(href='#') inicio de sesion
+                                p Descubre las ideas inovadoras de hoy
+                                .row.uniform
+                                    .6u(class='12u$(xsmall)')
+                                        input#isUsuario(type='text', name='isUsuario', value='', placeholder='Usuario')
+                                    .6u(class='12u$(xsmall)')
+                                        input#isPassword(type='password', name='isPassword', value='', placeholder='Contraseña')
+                                    div
+                                        input#demo-copy(type='checkbox', name='recordsession')
+                                        label(for='demo-copy') Recordar Sesion                                    
+                                    div#warning.12u(style="text-align: initial;color:red;")
+                                        ul.alt
+                                            li#errusuario(style="display:none;") *Escriba su usuario
+                                            li#errpassw(style="display:none;") *Escriba su contraseña
+                                    .12u
+                                        ul.actions.vertical
+                                            li
+                                                input.button.fit(type='submit', value='Entrar')                                    
+                                    .12u
+                                        p(style='margin: 0 0 0.5em 0;')
+                                            | No tienes cuenta? 
+                                            a(href='registro') Registrate
+                                        
+        if type == "registro"
+            form(method="post", action="registro/checkregistro", onsubmit="return EnviarRegistro();")
+                article#artregistro.post
+                    header
+                        .title
+                            center
+                                h2
+                                    a(href='#') Registro
+                                p Unete ala comunidad y comparte ideas
+                    .row.uniform
+                        .6u(class='12u$(xsmall)')
+                            input#RegNombre(type='text', name='RegNombre', value='', placeholder='Nombre *')
+                        .6u(class='12u$(xsmall)')
+                            input#RegApellidos(type='text', name='RegApellidos', value='', placeholder='Apellidos *')
+                        .6u(class='12u$(xsmall)')
+                            input#RegCorreo(type='text', name='RegCorreo', value='', placeholder='Correo *')
+                        .6u(class='12u$(xsmall)')
+                            input#RegUsuario(type='text', name='RegUsuario', value='', placeholder='Usuario *')
+                        .6u(class='12u$(xsmall)')
+                            input#RegPassword(type='password', name='RegPassword', value='', placeholder='Contraseña *')
+                        .6u(class='12u$(xsmall)')
+                            input#RegRPassword(type='password', name='RegRPassword', value='', placeholder='Repite Contraseña *')
+                        .12u
+                            .select-wrapper
+                                select#Paises(name='pais')
+                                    option(value='') - País * -
+                                    option(value='Mexico') México
+                                    option(value='Estados Unidos') Estados Unidos
+                                    option(value='Canada') Canadá
+                                    option(value='Colombia') Colombia
+                        .6u(class='12u$(small)')
+                            input#demo-copy(type='checkbox', name='recibirInfos')
+                            label(for='demo-copy') Recibir informes a mi correo
+                        .12u
+                            ul.actions
+                                li
+                                    input.button.icon.fa-save(type='submit', value='Registrar')
+                                li
+                                    a.button.big.fit(href='/cuenta/registro' style="margin:0;height:4em;line-height: 4em;") Limpiar
+      // Footer
+      section#footer
+        ul.icons
+          li
+            a.fa-twitter(href='#')
+              span.label Twitter
+          li
+            a.fa-facebook(href='#')
+              span.label Facebook
+          li
+            a.fa-instagram(href='#')
+              span.label Instagram
+          li
+            a.fa-rss(href='#')
+              span.label RSS
+          li
+            a.fa-envelope(href='#')
+              span.label Email
+        p.copyright
+          | © Untitled. Design: 
+          a(href='http://html5up.net') HTML5 UP
+          | . Images: 
+          a(href='http://unsplash.com') Unsplash
+          | .
