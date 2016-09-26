@@ -19,7 +19,7 @@ RespModel.checkLogin = function (finded,callback){
     })
 }
 
-RespModel.registrar = function (finded,callback){
+RespModel.registrar = function (newData,callback){
     Connect(function(BLOG){
         BLOG.cuentas.findOne({Correo: newData.Correo}, function(e,obj){
 		if(obj){

@@ -18,15 +18,24 @@ app.map({
     //Cuentas
     '/cuenta': {
         '/login':{
-            get: cuentasController.cuentas.get,
+            get: cuentasController.cuentas.getPageLogin,
             '/checklogin':{
-            post: cuentasController.cuentas.post
+            post: cuentasController.cuentas.postSession
             },
             '/cerrarsesion':{
             get: cuentasController.cuentas.delSession
             }
             
-        }        
+        },
+        '/registro':{
+            get: cuentasController.cuentas.getPageRegistro,
+            '/checkregistro':{
+                post: cuentasController.cuentas.post
+            }
+        },
+        '/panel':{
+            get: cuentasController.cuentas.getPagePanel
+        }
     }
 });
 }
