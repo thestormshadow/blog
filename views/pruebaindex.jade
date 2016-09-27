@@ -1,0 +1,74 @@
+extends layout
+doctype html
+html
+  head
+    title Single - Future Imperfect by HTML5 UP
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    //if lte IE 8
+      script(src='assets/js/ie/html5shiv.js')
+    link(rel='stylesheet', href='/stylesheets/main.css')
+    //if lte IE 9
+      link(rel='stylesheet', href='assets/css/ie9.css')
+    //if lte IE 8
+      link(rel='stylesheet', href='assets/css/ie8.css')
+  body.single
+    block myblock
+      // Main
+      #main
+        // Post
+        article.post
+          header
+            .title
+              h2
+                a(href='#') Magna sed adipiscing
+              p Lorem ipsum dolor amet nullam consequat etiam feugiat
+            .meta
+              time.published(datetime='2015-11-01') November 1, 2015
+              a.author(href='#')
+                span.name Jane Doe
+                img(src='images/avatar.jpg', alt='')
+          span.image.featured
+            img(src='images/pic01.jpg', alt='')
+          p
+            | Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.
+          p
+            | Nunc quis dui scelerisque, scelerisque urna ut, dapibus orci. Sed vitae condimentum lectus, ut imperdiet quam. Maecenas in justo ut nulla aliquam sodales vel at ligula. Sed blandit diam odio, sed fringilla lectus molestie sit amet. Praesent eu tortor viverra lorem mattis pulvinar feugiat in turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce ullamcorper tellus sit amet mattis dignissim. Phasellus ut metus ligula. Curabitur nec leo turpis. Ut gravida purus quis erat pretium, sed pellentesque massa elementum. Fusce vestibulum porta augue, at mattis justo. Integer sed sapien fringilla, dapibus risus id, faucibus ante. Pellentesque mattis nunc sit amet tortor pellentesque, non placerat neque viverra.
+          footer
+            ul.stats
+              li
+                a(href='#') General
+              li
+                a.icon.fa-heart(href='#') 28
+              li
+                a.icon.fa-comment(href='#') 128
+      // Footer
+      section#footer
+        ul.icons
+          li
+            a.fa-twitter(href='#')
+              span.label Twitter
+          li
+            a.fa-facebook(href='#')
+              span.label Facebook
+          li
+            a.fa-instagram(href='#')
+              span.label Instagram
+          li
+            a.fa-rss(href='#')
+              span.label RSS
+          li
+            a.fa-envelope(href='#')
+              span.label Email
+        p.copyright
+          | © Untitled. Design: 
+          a(href='http://html5up.net') HTML5 UP
+          | . Images: 
+          a(href='http://unsplash.com') Unsplash
+          | .
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
+        script(src='/javascripts/jquery-3.1.0.min.js')
+        script(src='/javascripts/jquery.min.js')
+        script(src='/javascripts/skel.min.js')
+        script(src='/javascripts/util.js')
+        script(src='/javascripts/main.js')

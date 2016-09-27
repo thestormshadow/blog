@@ -1,18 +1,80 @@
-doctype 
+doctype html
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/main.css')
+    title Blog del ingenio
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    //if lte IE 
+      script(src='assets/js/ie/html5shiv.js')
+    link(rel='stylesheet', href='assets/css/main.css')
     //if lte IE 9
       link(rel='stylesheet', href='assets/css/ie9.css')
     //if lte IE 8
       link(rel='stylesheet', href='assets/css/ie8.css')
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
-    script(src='/javascripts/jquery-3.1.0.min.js')
-    script(src='/javascripts/jquery.min.js')
-    script(src='/javascripts/skel.min.js')
-    script(src='/javascripts/util.js')
-    script(src='/javascripts/main.js')
-
+    link(rel='stylesheet', href='/stylesheets/main.css')
+    
   body
-    block content
+    // Wrapper
+    #wrapper
+      // Header
+      header#header
+        h1
+          a(href='#') Blog del ingenio
+        nav.links
+          ul
+            li
+              a(href='#') Inicio
+            li
+              a(href='#') Mis Momentos
+            // <li><a href="#">tempus</a></li>
+            li
+              a(href='#') Contacto
+        nav.main
+          ul
+            li.search
+              a.fa-search(href='#search') Buscar
+              form#search(method='get', action='#')
+                input(type='text', name='query', placeholder='Buscar')
+            li.menu
+              a.fa-bars(href='#menu') Menu
+      // Menu
+      section#menu
+        // Search
+        section
+          form.search(method='get', action='#')
+            input(type='text', name='query', placeholder='Buscar')
+        // Links
+        section
+          ul.links
+            li
+              a(href='#')
+                h3 Inicio
+                p Descubre información nueva
+            li
+              a(href='#')
+                h3 Mis Momentos
+                p Mi blog personal
+            li
+              a(href='#')
+                h3 Contacto
+                p Envia comentarios y te contestaremos
+        // Actions
+        section
+            ul.actions.vertical
+                li
+                    if(session.idCuenta == null)
+                        a#login.button.big.fit(href='/cuenta/login') Iniciar Sesión
+                    else
+                        p Hola! #{session.nombre}.
+                        p 
+                        | Administra tu cuenta haciendo
+                        a(href="/cuenta/panel")  Click Aqui
+                        | .
+                        if(session.tipousuario == 2)
+                            p
+                            | Administrador Crea un post
+                            a(href="/cuenta/panel")  Click Aqui
+                            | .
+                        br
+                        br
+                        a#login.button.big.fit(href='/cuenta/login/cerrarsesion') Cerrar Sesión

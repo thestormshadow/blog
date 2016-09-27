@@ -7,6 +7,12 @@ var posts = {
             res.render('index', { error:'', dataposts: resp });
     })
     },
+    
+    new: function(req, res){
+        modelPosts.list({},function(e, resp){
+            res.render('pruebaindex', { error:'', dataposts: resp });
+    })
+    },
 
     post: function(req, res){
     var findobj = (req.body.query.includes("#")==false) ? {"Titulo": new RegExp(req.body.query, 'i')}:{"Tags.texttag": req.body.query};

@@ -2,7 +2,7 @@ postsController = require("./posts");
 cuentasController = require("./cuentas");
 
 module.exports = function(app){
-app.map({
+    app.map({
     
     //Posts
     '/': {
@@ -13,8 +13,8 @@ app.map({
             post: postsController.posts.post
             },
         },
-    },
-    
+    },    
+        
     //Cuentas
     '/cuenta': {
         '/login':{
@@ -25,19 +25,25 @@ app.map({
             '/cerrarsesion':{
             get: cuentasController.cuentas.delSession
             }
-            
         },
         '/registro':{
             get: cuentasController.cuentas.getPageRegistro,
             '/checkregistro':{
                 post: cuentasController.cuentas.post
             }
-        },
-        '/panel':{
+        },        
+    },
+        
+    //Usuarios
+    '/usuarios':{
+        '/:uid':{
             get: cuentasController.cuentas.getPagePanel
         }
+    },
+    '/new':{
+            get: postsController.posts.new
     }
-});
+    });
 }
 /*
 app.map({

@@ -1,15 +1,25 @@
-extends layout
-
-body
-block content
-  div#error= error
-  
-  #wrapper
+doctype html
+html
+  head
+    title Blog del ingenio
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    //if lte IE 
+      script(src='assets/js/ie/html5shiv.js')
+    link(rel='stylesheet', href='assets/css/main.css')
+    //if lte IE 9
+      link(rel='stylesheet', href='assets/css/ie9.css')
+    //if lte IE 8
+      link(rel='stylesheet', href='assets/css/ie8.css')
+    link(rel='stylesheet', href='/stylesheets/main.css')
     
+  body
+    // Wrapper
+    #wrapper
       // Header
       header#header
         h1
-          a(href='#') Brain Blog
+          a(href='#') Blog del ingenio
         nav.links
           ul
             li
@@ -23,413 +33,99 @@ block content
           ul
             li.search
               a.fa-search(href='#search') Buscar
-              form#search(method='post', action='/post/find')
+              form#search(method='get', action='#')
                 input(type='text', name='query', placeholder='Buscar')
             li.menu
               a.fa-bars(href='#menu') Menu
-        // Menu
-        section#menu
-                // Search
-                section
-                  form.search(method='post', action='/post/find')
-                    input(type='text', name='query', placeholder='Buscar')
-                // Links
-                section
-                  h3 Menu
-                  br
-                  ul.links
-                    li
-                      a(href='/')
-                        p Inicio
-                    li
-                      a(href='#')
-                        p Mis Momentos
-                    li
-                      a(href='#')
-                        p Contacto
-
-                // Actions
-                section
-                    ul.actions.vertical
-                        li
-                            if(session.idCuenta == null)
-                                a#login.button.big.fit(href='/cuenta/login') Iniciar Sesión
-                            else
-                                p Hola! #{session.nombre}.
-                                p 
-                                | Administra tu cuenta haciendo
-                                a(href="/cuenta/panel")  Click Aqui
-                                | .
-                                if(session.tipousuario == 2)
-                                    p
-                                    | Administrador Crea un post
-                                    a(href="/cuenta/panel")  Click Aqui
-                                    | .
-                                br
-                                br
-                                a#login.button.big.fit(href='/cuenta/login/cerrarsesion') Cerrar Sesión        
-                
+      // Menu
+      section#menu
+        // Search
+        section
+          form.search(method='get', action='#')
+            input(type='text', name='query', placeholder='Buscar')
+        // Links
+        section
+          ul.links
+            li
+              a(href='#')
+                h3 Inicio
+                p Descubre información nueva
+            li
+              a(href='#')
+                h3 Mis Momentos
+                p Mi blog personal
+            li
+              a(href='#')
+                h3 Contacto
+                p Envia comentarios y te contestaremos
+        // Actions
+        section
+            ul.actions.vertical
+                li
+                    if(session.idCuenta == null)
+                        a#login.button.big.fit(href='/cuenta/login') Iniciar Sesión
+                    else
+                        p Hola! #{session.nombre}.
+                        p 
+                        | Administra tu cuenta haciendo
+                        a(href="/cuenta/panel")  Click Aqui
+                        | .
+                        if(session.tipousuario == 2)
+                            p
+                            | Administrador Crea un post
+                            a(href="/cuenta/panel")  Click Aqui
+                            | .
+                        br
+                        br
+                        a#login.button.big.fit(href='/cuenta/login/cerrarsesion') Cerrar Sesión
+        
+        
       // Main
       #main
-      
-        
-        //post
+        // Post
+                
         if(typeof(dataposts) != "undefined")
-                    each item in dataposts
-                        article.post
-                            header
-                                .title
-                                    h2
-                                        a(href='/post?sif=#{item._id}') #{item.Titulo}
-                                    p #{item.SubTitulo}
-                                    p(style='margin-top:-20px;')
-                                    code Tags:
-                                        each key in item.Tags
-                                            form(id="my_form#{key.texttag}",method="post", action="/post/find",style="margin:0;float:left;")
-                                                <input type="hidden" name="query" value="#{key.texttag}">
-                                            a(href="javascript:void(0)", onclick="document.getElementById('my_form#{key.texttag}').submit();")  #{key.texttag}     
-                                            
-                                .meta
-                                    time.published(datetime='2015-11-01') #{item.Fecha}
-                                    a.author(href='#')
-                                        span.name Javier Vargas
-                                        img(src='images/avatar.jpg', alt='')
-                            a.image.featured(href='#')
-                                img(src='#{item.UrlPortada}', alt='')
-                            p #{item.Contenido}
-                            footer
-                                ul.actions
-                                    li
-                                        a.button.big(href='/post?sif=#{item._id}') Seguir Leyendo
-                                ul.stats
-                                    li
-                                        a(href='#') General
-                                    li
-                                        a.icon.fa-heart(href='#') #{item.Like}
-                                    li
-                                        a.icon.fa-comment(href='#') 128
+            each item in dataposts
+                article.post
+                    header
+                        .title
+                            h2
+                                a(href='/post?sif=#{item._id}') #{item.Titulo}
+                            p #{item.SubTitulo}
+                            p(style='margin-top:-20px;')
+                            code Tags:
+                                each key in item.Tags
+                                    form(id="my_form#{key.texttag}",method="post", action="/post/find",style="margin:0;float:left;")
+                                        <input type="hidden" name="query" value="#{key.texttag}">
                                         
-                        
-        //post items
-        article.post
-          header
-            .title
-              h2
-                a(href='#') Elements
-              p Lorem ipsum dolor amet nullam consequat etiam feugiat
-            .meta
-              time.published(datetime='2015-10-18') October 18, 2015
-              a.author(href='#')
-                span.name Jane Doe
-                img(src='images/avatar.jpg', alt='')
-          section
-            h3 Text
-            p
-              | This is 
-              b bold
-              |  and this is 
-              strong strong
-              | . This is 
-              i italic
-              |  and this is 
-              em emphasized
-              | .
-              | 									This is 
-              sup superscript
-              |  text and this is 
-              sub subscript
-              |  text.
-              | 									This is 
-              u underlined
-              |  and this is code: 
-              code for (;;) { ... }
-              | . Finally, 
-              a(href='#') this is a link
-              | .
-            hr
-            p
-              | Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.
-            hr
-            h2 Heading Level 2
-            h3 Heading Level 3
-            h4 Heading Level 4
-            hr
-            h4 Blockquote
-            blockquote
-              | Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.
-            h4 Preformatted
-            pre.
-          section
-            h3 Lists
-            .row
-              .6u(class='12u$(medium)')
-                h4 Unordered
-                ul
-                  li Dolor pulvinar etiam.
-                  li Sagittis adipiscing.
-                  li Felis enim feugiat.
-                h4 Alternate
-                ul.alt
-                  li Dolor pulvinar etiam.
-                  li Sagittis adipiscing.
-                  li Felis enim feugiat.
-              .6u.12u(medium)
-                h4 Ordered
-                ol
-                  li Dolor pulvinar etiam.
-                  li Etiam vel felis viverra.
-                  li Felis enim feugiat.
-                  li Dolor pulvinar etiam.
-                  li Etiam vel felis lorem.
-                  li Felis enim et feugiat.
-                h4 Icons
-                ul.icons
-                  li
-                    a.icon.fa-twitter(href='#')
-                      span.label Twitter
-                  li
-                    a.icon.fa-facebook(href='#')
-                      span.label Facebook
-                  li
-                    a.icon.fa-instagram(href='#')
-                      span.label Instagram
-                  li
-                    a.icon.fa-github(href='#')
-                      span.label Github
-            h3 Actions
-            .row
-              .6u(class='12u$(medium)')
-                ul.actions
-                  li
-                    a.button(href='#') Default
-                  li
-                    a.button(href='#') Default
-                  li
-                    a.button(href='#') Default
-                ul.actions.small
-                  li
-                    a.button.small(href='#') Small
-                  li
-                    a.button.small(href='#') Small
-                  li
-                    a.button.small(href='#') Small
-                ul.actions.vertical
-                  li
-                    a.button(href='#') Default
-                  li
-                    a.button(href='#') Default
-                  li
-                    a.button(href='#') Default
-                ul.actions.vertical.small
-                  li
-                    a.button.small(href='#') Small
-                  li
-                    a.button.small(href='#') Small
-                  li
-                    a.button.small(href='#') Small
-              .6u(class='12u$(medium)')
-                ul.actions.vertical
-                  li
-                    a.button.fit(href='#') Default
-                  li
-                    a.button.fit(href='#') Default
-                ul.actions.vertical.small
-                  li
-                    a.button.small.fit(href='#') Small
-                  li
-                    a.button.small.fit(href='#') Small
-          section
-            h3 Table
-            h4 Default
-            .table-wrapper
-              table
-                thead
-                  tr
-                    th Name
-                    th Description
-                    th Price
-                tbody
-                  tr
-                    td Item One
-                    td Ante turpis integer aliquet porttitor.
-                    td 29.99
-                  tr
-                    td Item Two
-                    td Vis ac commodo adipiscing arcu aliquet.
-                    td 19.99
-                  tr
-                    td Item Three
-                    td  Morbi faucibus arcu accumsan lorem.
-                    td 29.99
-                  tr
-                    td Item Four
-                    td Vitae integer tempus condimentum.
-                    td 19.99
-                  tr
-                    td Item Five
-                    td Ante turpis integer aliquet porttitor.
-                    td 29.99
-                tfoot
-                  tr
-                    td(colspan='2')
-                    td 100.00
-            h4 Alternate
-            .table-wrapper
-              table.alt
-                thead
-                  tr
-                    th Name
-                    th Description
-                    th Price
-                tbody
-                  tr
-                    td Item One
-                    td Ante turpis integer aliquet porttitor.
-                    td 29.99
-                  tr
-                    td Item Two
-                    td Vis ac commodo adipiscing arcu aliquet.
-                    td 19.99
-                  tr
-                    td Item Three
-                    td  Morbi faucibus arcu accumsan lorem.
-                    td 29.99
-                  tr
-                    td Item Four
-                    td Vitae integer tempus condimentum.
-                    td 19.99
-                  tr
-                    td Item Five
-                    td Ante turpis integer aliquet porttitor.
-                    td 29.99
-                tfoot
-                  tr
-                    td(colspan='2')
-                    td 100.00
-          section
-            h3 Buttons
-            ul.actions
-              li
-                a.button.big(href='#') Big
-              li
-                a.button(href='#') Default
-              li
-                a.button.small(href='#') Small
-            ul.actions.fit
-              li
-                a.button.fit(href='#') Fit
-              li
-                a.button.fit(href='#') Fit
-              li
-                a.button.fit(href='#') Fit
-            ul.actions.fit.small
-              li
-                a.button.fit.small(href='#') Fit + Small
-              li
-                a.button.fit.small(href='#') Fit + Small
-              li
-                a.button.fit.small(href='#') Fit + Small
-            ul.actions
-              li
-                a.button.icon.fa-download(href='#') Icon
-              li
-                a.button.icon.fa-upload(href='#') Icon
-              li
-                a.button.icon.fa-save(href='#') Icon
-            ul.actions
-              li
-                span.button.disabled Disabled
-              li
-                span.button.disabled.icon.fa-download Disabled
-          section
-            h3 Form
-            form(method='post', action='#')
-              .row.uniform
-                .6u(class='12u$(xsmall)')
-                  input#demo-name(type='text', name='demo-name', value='', placeholder='Name')
-                .6u.12u(xsmall)
-                  input#demo-email(type='email', name='demo-email', value='', placeholder='Email')
-                .12u
-                  .select-wrapper
-                    select#demo-category(name='demo-category')
-                      option(value='') - Category -
-                      option(value='1') Manufacturing
-                      option(value='1') Shipping
-                      option(value='1') Administration
-                      option(value='1') Human Resources
-                .4u(class='12u$(small)')
-                  input#demo-priority-low(type='radio', name='demo-priority', checked='')
-                  label(for='demo-priority-low') Low
-                .4u(class='12u$(small)')
-                  input#demo-priority-normal(type='radio', name='demo-priority')
-                  label(for='demo-priority-normal') Normal
-                .4u.12u(small)
-                  input#demo-priority-high(type='radio', name='demo-priority')
-                  label(for='demo-priority-high') High
-                .6u.12u(small)
-                  input#demo-copy(type='checkbox', name='demo-copy')
-                  label(for='demo-copy') Email me a copy
-                .6u.12u(small)
-                  input#demo-human(type='checkbox', name='demo-human', checked='')
-                  label(for='demo-human') Not a robot
-                .12u
-                  textarea#demo-message(name='demo-message', placeholder='Enter your message', rows='6')
-                .12u
-                  ul.actions
-                    li
-                      input(type='submit', value='Send Message')
-                    li
-                      input(type='reset', value='Reset')
-          section
-            h3 Image
-            h4 Fit
-            .box.alt
-              .row.uniform
-                .12u
-                  span.image.fit
-                    img(src='images/pic02.jpg', alt='')
-                .4u
-                  span.image.fit
-                    img(src='images/pic04.jpg', alt='')
-                .4u
-                  span.image.fit
-                    img(src='images/pic05.jpg', alt='')
-                .4u
-                  span.image.fit
-                    img(src='images/pic06.jpg', alt='')
-                .4u
-                  span.image.fit
-                    img(src='images/pic06.jpg', alt='')
-                .4u
-                  span.image.fit
-                    img(src='images/pic04.jpg', alt='')
-                .4u
-                  span.image.fit
-                    img(src='images/pic05.jpg', alt='')
-                .4u
-                  span.image.fit
-                    img(src='images/pic05.jpg', alt='')
-                .4u
-                  span.image.fit
-                    img(src='images/pic06.jpg', alt='')
-                .4u
-                  span.image.fit
-                    img(src='images/pic04.jpg', alt='')
-            h4 Left & Right
-            p
-              span.image.left
-                img(src='images/pic07.jpg', alt='')
-              | Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.
-            p
-              span.image.right
-                img(src='images/pic04.jpg', alt='')
-              | Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.
+                                        a(href="javascript:void(0)", onclick="document.getElementById('my_form#{key.texttag}').submit();")  #{key.texttag}     
+                                            
+                        .meta
+                            time.published(datetime='2015-11-01') #{item.Fecha}
+                            a.author(href='#')
+                                span.name Javier Vargas
+                                img(src='images/avatar.jpg', alt='')
+                    a.image.featured(href='#')
+                        img(src='#{item.UrlPortada}', alt='')
+                    p #{item.Contenido}
+                    footer
+                        ul.actions
+                            li
+                                a.button.big(href='/post?sif=#{item._id}') Seguir Leyendo
+                        ul.stats
+                            li
+                                a(href='#') General
+                            li
+                                a.icon.fa-heart(href='#') #{item.Like}
+                            li
+                                a.icon.fa-comment(href='#') 128
+        
         // Pagination
-        ul.actions.pagination
+        ul.actions.pagination(style='')
           li
-            a.disabled.button.big.previous(href='') Previous Page
+            a.disabled.button.big.previous(href='') Pagina anterior
           li
-            a.button.big.next(href='#') Next Page
+            a.button.big.next(href='#') Siguiente pagina
       // Sidebar
       section#sidebar
         // Intro
@@ -437,106 +133,48 @@ block content
           a.logo(href='#')
             img(src='images/jlogo.jpg', alt='')
           header
-            h2 Brain Blog
+            h2 Blog del ingenio
             p
-              | Mi vida en pequeños 
-              a(href='#') momentos fotograficos
+              | Comunidad 
+              a(href='#') cientifica y tecnologica
               | .
               // <a href="http://html5up.net">HTML5 UP</a>
         // Mini Posts
         section
           .mini-posts
             // Mini Post
-            article.mini-post
-              header
-                h3
-                  a(href='#') Vitae sed condimentum
-                time.published(datetime='2015-10-20') October 20, 2015
-                a.author(href='#')
-                  img(src='images/avatar.jpg', alt='')
-              a.image(href='#')
-                img(src='images/pic04.jpg', alt='')
-            // Mini Post
-            article.mini-post
-              header
-                h3
-                  a(href='#') Rutrum neque accumsan
-                time.published(datetime='2015-10-19') October 19, 2015
-                a.author(href='#')
-                  img(src='images/avatar.jpg', alt='')
-              a.image(href='#')
-                img(src='images/pic05.jpg', alt='')
-            // Mini Post
-            article.mini-post
-              header
-                h3
-                  a(href='#') Odio congue mattis
-                time.published(datetime='2015-10-18') October 18, 2015
-                a.author(href='#')
-                  img(src='images/avatar.jpg', alt='')
-              a.image(href='#')
-                img(src='images/pic06.jpg', alt='')
-            // Mini Post
-            article.mini-post
-              header
-                h3
-                  a(href='#') Enim nisl veroeros
-                time.published(datetime='2015-10-17') October 17, 2015
-                a.author(href='#')
-                  img(src='images/avatar.jpg', alt='')
-              a.image(href='#')
-                img(src='images/pic07.jpg', alt='')
+          if(typeof(dataposts) != "undefined")
+            each item in dataposts
+                article.mini-post
+                    header
+                        h3
+                            a(href='#') #{item.Titulo}
+                        time.published(datetime='2015-10-20') #{item.Fecha}
+                        a.author(href='#')
+                            img(src='images/avatar.jpg', alt='')
+                    a.image(href='#')
+                        img(src='#{item.UrlPortada}', alt='')
         // Posts List
         section
           ul.posts
-            li
-              article
-                header
-                  h3
-                    a(href='#') Lorem ipsum fermentum ut nisl vitae
-                  time.published(datetime='2015-10-20') October 20, 2015
-                a.image(href='#')
-                  img(src='images/pic08.jpg', alt='')
-            li
-              article
-                header
-                  h3
-                    a(href='#') Convallis maximus nisl mattis nunc id lorem
-                  time.published(datetime='2015-10-15') October 15, 2015
-                a.image(href='#')
-                  img(src='images/pic09.jpg', alt='')
-            li
-              article
-                header
-                  h3
-                    a(href='#') Euismod amet placerat vivamus porttitor
-                  time.published(datetime='2015-10-10') October 10, 2015
-                a.image(href='#')
-                  img(src='images/pic10.jpg', alt='')
-            li
-              article
-                header
-                  h3
-                    a(href='#') Magna enim accumsan tortor cursus ultricies
-                  time.published(datetime='2015-10-08') October 8, 2015
-                a.image(href='#')
-                  img(src='images/pic11.jpg', alt='')
-            li
-              article
-                header
-                  h3
-                    a(href='#') Congue ullam corper lorem ipsum dolor
-                  time.published(datetime='2015-10-06') October 7, 2015
-                a.image(href='#')
-                  img(src='images/pic12.jpg', alt='')
+            if(typeof(dataposts) != "undefined")
+                each item in dataposts
+                    li
+                        article
+                            header
+                                h3
+                                    a(href='#') #{item.Titulo}
+                                time.published(datetime='2015-10-20') #{item.Fecha}
+                            a.image(href='#')
+                                img(src='#{item.UrlPortada}', alt='')
         // About
         section.blurb
-          h2 About
+          h2 ¿Quiénes somos?
           p
-            | Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod amet placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at phasellus sed ultricies.
+            | Blog del ingenio es una comunidad de interes academico y cientifico que integra herramientas inteligentes que mejoran su usabilidad practica y amena.
           ul.actions
             li
-              a.button(href='#') Learn More
+              a.button(href='#') Seguir Leyendo
         // Footer
         section#footer
           ul.icons
@@ -556,8 +194,14 @@ block content
               a.fa-envelope(href='#')
                 span.label Email
           p.copyright
-            | © Untitled. Design: 
+            | © CodeIngenius. Diseño: 
             a(href='http://html5up.net') HTML5 UP
-            | . Images: 
+            | . Imagenes: 
             a(href='http://unsplash.com') Unsplash
             | .
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
+    script(src='/javascripts/jquery-3.1.0.min.js')
+    script(src='/javascripts/jquery.min.js')
+    script(src='/javascripts/skel.min.js')
+    script(src='/javascripts/util.js')
+    script(src='/javascripts/main.js')
