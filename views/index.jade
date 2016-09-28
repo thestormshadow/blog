@@ -6,7 +6,6 @@ html
     meta(name='viewport', content='width=device-width, initial-scale=1')
     //if lte IE 
       script(src='assets/js/ie/html5shiv.js')
-    link(rel='stylesheet', href='assets/css/main.css')
     //if lte IE 9
       link(rel='stylesheet', href='assets/css/ie9.css')
     //if lte IE 8
@@ -19,21 +18,21 @@ html
       // Header
       header#header
         h1
-          a(href='#') Blog del ingenio
+          a(href='/') Blog del ingenio
         nav.links
           ul
             li
-              a(href='#') Inicio
+              a(href='/') Inicio
             li
-              a(href='#') Mis Momentos
+              a(href='/') Mis Momentos
             // <li><a href="#">tempus</a></li>
             li
-              a(href='#') Contacto
+              a(href='/') Contacto
         nav.main
           ul
             li.search
               a.fa-search(href='#search') Buscar
-              form#search(method='get', action='#')
+              form#search(method='post', action='/post/find')
                 input(type='text', name='query', placeholder='Buscar')
             li.menu
               a.fa-bars(href='#menu') Menu
@@ -41,21 +40,21 @@ html
       section#menu
         // Search
         section
-          form.search(method='get', action='#')
+          form.search(method='post', action='/post/find')
             input(type='text', name='query', placeholder='Buscar')
         // Links
         section
           ul.links
             li
-              a(href='#')
+              a(href='/')
                 h3 Inicio
                 p Descubre información nueva
             li
-              a(href='#')
+              a(href='/')
                 h3 Mis Momentos
                 p Mi blog personal
             li
-              a(href='#')
+              a(href='/')
                 h3 Contacto
                 p Envia comentarios y te contestaremos
         // Actions
@@ -93,12 +92,12 @@ html
                                 a(href='/post?sif=#{item._id}') #{item.Titulo}
                             p #{item.SubTitulo}
                             p(style='margin-top:-20px;')
-                            code Tags:
-                                each key in item.Tags
-                                    form(id="my_form#{key.texttag}",method="post", action="/post/find",style="margin:0;float:left;")
-                                        <input type="hidden" name="query" value="#{key.texttag}">
-                                        
-                                        a(href="javascript:void(0)", onclick="document.getElementById('my_form#{key.texttag}').submit();")  #{key.texttag}     
+                            code(style="float:left;") Tags:
+                            each key in item.Tags
+                                form(id="my_form#{key.texttag}",method="post", action="/post/find",style="margin:0;float:left;")
+                                    input(type="hidden", name="query", value="#{key.texttag}")
+                                    a(href="javascript:void(0)", onclick="document.getElementById('my_form#{key.texttag}').submit();")
+                                        | #{key.texttag}
                                             
                         .meta
                             time.published(datetime='2015-11-01') #{item.Fecha}

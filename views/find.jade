@@ -1,72 +1,61 @@
-doctype 
+doctype html
 html
   head
-    title= title
+    title Single - Future Imperfect by HTML5 UP
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    //if lte IE 8
+      script(src='assets/js/ie/html5shiv.js')
     link(rel='stylesheet', href='/stylesheets/main.css')
     //if lte IE 9
       link(rel='stylesheet', href='assets/css/ie9.css')
     //if lte IE 8
       link(rel='stylesheet', href='assets/css/ie8.css')
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
-    script(src='/javascripts/jquery-3.1.0.min.js')
-    script(src='/javascripts/jquery.min.js')
-    script(src='/javascripts/skel.min.js')
-    script(src='/javascripts/util.js')
-    script(src='/javascripts/main.js')
-    script(src='/javascripts/checkforms.js')
-
   body.single
     // Wrapper
-    #wrapper
+   #wrapper
       // Header
       header#header
         h1
-          a(href='#') Future Imperfect
+          a(href='/') Blog del ingenio
         nav.links
           ul
             li
-              a(href='#') Lorem
+              a(href='/') Inicio
             li
-              a(href='#') Ipsum
+              a(href='/') Mis Momentos
+            // <li><a href="#">tempus</a></li>
             li
-              a(href='#') Feugiat
-            li
-              a(href='#') Tempus
-            li
-              a(href='#') Adipiscing
+              a(href='/') Contacto
         nav.main
           ul
             li.search
-              a.fa-search(href='#search') Search
-              form#search(method='get', action='#')
-                input(type='text', name='query', placeholder='Search')
+              a.fa-search(href='#search') Buscar
+              form#search(method='post', action='/post/find')
+                input(type='text', name='query', placeholder='Buscar')
             li.menu
               a.fa-bars(href='#menu') Menu
       // Menu
       section#menu
         // Search
         section
-          form.search(method='get', action='#')
-            input(type='text', name='query', placeholder='Search')
+          form.search(method='post', action='/post/find')
+            input(type='text', name='query', placeholder='Buscar')
         // Links
         section
           ul.links
             li
-              a(href='#')
-                h3 Lorem ipsum
-                p Feugiat tempus veroeros dolor
+              a(href='/')
+                h3 Inicio
+                p Descubre información nueva
             li
-              a(href='#')
-                h3 Dolor sit amet
-                p Sed vitae justo condimentum
+              a(href='/')
+                h3 Mis Momentos
+                p Mi blog personal
             li
-              a(href='#')
-                h3 Feugiat veroeros
-                p Phasellus sed ultricies mi congue
-            li
-              a(href='#')
-                h3 Etiam sed consequat
-                p Porta lectus amet ultricies
+              a(href='/')
+                h3 Contacto
+                p Envia comentarios y te contestaremos
       // Main
       #main
         // Post
@@ -83,7 +72,7 @@ html
                                 code Tags:
                                     each key in item.Tags
                                         form(id="my_form#{key.texttag}",method="post", action="/post/find",style="margin:0;float:left;")
-                                            <input type="hidden" name="query" value="#{key.texttag}">
+                                            input(type="hidden", name="query", value="#{key.texttag}")
                                         a(href="javascript:void(0)", onclick="document.getElementById('my_form#{key.texttag}').submit();")  #{key.texttag}       
                                                 
                             .meta
@@ -102,7 +91,7 @@ html
                                 |o 
                                 a(href="javascript:void(0)") Reportar Un Error
                             p(style='margin-top:-20px;')
-                                
+          
       // Footer
       section#footer
         ul.icons
@@ -122,8 +111,15 @@ html
             a.fa-envelope(href='#')
               span.label Email
         p.copyright
-          | © Untitled. Design: 
-          a(href='http://html5up.net') HTML5 UP
-          | . Images: 
-          a(href='http://unsplash.com') Unsplash
-          | .
+            | © CodeIngenius. Diseño: 
+            a(href='http://html5up.net') HTML5 UP
+            | . Imagenes: 
+            a(href='http://unsplash.com') Unsplash
+            | .
+        
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
+    script(src='/javascripts/jquery-3.1.0.min.js')
+    script(src='/javascripts/jquery.min.js')
+    script(src='/javascripts/skel.min.js')
+    script(src='/javascripts/util.js')
+    script(src='/javascripts/main.js')

@@ -3032,6 +3032,18 @@
 					text-transform: uppercase;
 				}
 
+        
+        #header .menu{
+            display: none;
+        }
+        
+        @media screen and (max-width: 980px) {
+            #header .menu{
+                display: inline-block;
+            }   
+        }
+        
+
 		#header .main {
 			height: inherit;
 			line-height: inherit;
@@ -3436,7 +3448,6 @@
 		}
 
 		@media screen and (max-width: 736px) {
-
 			#menu > * {
 				padding: 1.5em;
 			}
