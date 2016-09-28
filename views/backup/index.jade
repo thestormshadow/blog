@@ -4,7 +4,6 @@ html
     title Blog del ingenio
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    script(src='/javascripts/checkforms.js')
     //if lte IE 
       script(src='assets/js/ie/html5shiv.js')
     //if lte IE 9
@@ -31,24 +30,10 @@ html
               a(href='/') Contacto
         nav.main
           ul
-            li.login(id="login")
-                if(session.idCuenta == null)
-                    form(method="post", action="cuenta/login/checklogin", onsubmit="return EnviarLogin();")
-                        input(type="text", name="isUsuario" style="width: 10em;height: 2.5em;", placeholder='Usuario', required)
-                        input(type="password", name='isPassword', style="width: 10em;height: 2.5em;", placeholder='Contraseña', required)
-                        input(type="submit", style="width: 10em;height: 100%;", value="Entrar")
-                else
-                    img(src="images/avatar.jpg" style="height: 100%;border-radius: 5em;margin-right: 0.5em;margin-left: 0.5em;")
-                    p(style="margin-top: 0em;line-height: 4.7;margin-right: 0.5em;") 
-                        |Hola! #{session.nombre}. 
-                        a(href="/cuenta/login/cerrarsesion") cerrar sesión
-                    
-          
             li.search
               a.fa-search(href='#search') Buscar
               form#search(method='post', action='/post/find')
                 input(type='text', name='query', placeholder='Buscar')
-                                    
             li.menu
               a.fa-bars(href='#menu') Menu
       // Menu
