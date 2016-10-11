@@ -5,7 +5,17 @@ var RespModel = {};
 
 RespModel.list = function(findData,callback){
     Connect(function(BLOG){
-        BLOG.usuarios.find(findData).toArray(function(e,res){
+        BLOG.usuarios.aggregate([{
+            $lookup:{
+                from: "cuentas",
+                localField: "idCuenta",
+                foreignField: "_id",
+                as: "CuentaInfo"
+            }
+        },
+        { $unwind: "$CuentaInfo"},
+        { $match: findData }
+        ]).toArray(function(e,res){
 		if(e){
 			callback(e)
 		}else{

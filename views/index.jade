@@ -40,7 +40,7 @@ html
                     a.button(href='/cuenta/registro', style="text-indent: 0;width:auto;margin-top:0.5em;height: 4.7em;") Registro
                         
                 else
-                    img(src="images/avatar.jpg" style="height: 100%;border-radius: 5em;margin-right: 0.5em;margin-left: 0.5em;")
+                    img(src="#{session.avatar}" style="height: 100%;border-radius: 5em;margin-right: 0.5em;margin-left: 0.5em;")
                     p(style="margin-top: 0em;line-height: 4.7;margin-right: 0.5em;") 
                         |Hola! #{session.nombre}. 
                         a(href="/cuenta/login/cerrarsesion") cerrar sesión
@@ -119,8 +119,8 @@ html
                         .meta
                             time.published(datetime='2015-11-01') #{item.Fecha}
                             a.author(href='#')
-                                span.name Javier Vargas
-                                img(src='images/avatar.jpg', alt='')
+                                span.name #{item.Autor.Nombre} #{item.Autor.Apellidos}
+                                img(src='#{item.Autor.UrlAvatar}', alt='')
                     a.image.featured(href='#')
                         img(src='#{item.UrlPortada}', alt='')
                     p #{item.Contenido}
@@ -167,7 +167,7 @@ html
                             a(href='#') #{item.Titulo}
                         time.published(datetime='2015-10-20') #{item.Fecha}
                         a.author(href='#')
-                            img(src='images/avatar.jpg', alt='')
+                            img(src='#{item.Autor.UrlAvatar}', alt='')
                     a.image(href='#')
                         img(src='#{item.UrlPortada}', alt='')
         // Posts List

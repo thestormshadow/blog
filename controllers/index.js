@@ -1,5 +1,6 @@
 postsController = require("./posts");
 cuentasController = require("./cuentas");
+usuariosController = require("./usuarios");
 
 module.exports = function(app){
     app.map({
@@ -35,9 +36,9 @@ module.exports = function(app){
     },
         
     //Usuarios
-    '/usuarios':{
+    '/usuario':{
         '/:uid':{
-            get: cuentasController.cuentas.getPagePanel
+            get: usuariosController.usuarios.get
         }
     },
     '/new':{

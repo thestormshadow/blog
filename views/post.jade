@@ -89,7 +89,7 @@ html
             .meta
               time.published(datetime='2015-11-01') #{datapost[0].Fecha}
               a.author(href='#')
-                span.name Javier Vargas
+                span.name #{datapost[0].Autor.Nombre} #{datapost[0].Autor.Apellidos}
                 img(src='images/avatar.jpg', alt='')
           span.image.featured
             img(src='#{datapost[0].UrlPortada}', alt='')
@@ -178,7 +178,7 @@ html
             .meta(style='border-right: solid 1px rgba(160, 160, 160, 0.3);padding-top:1em;padding-bottom:auto;')
               time.published(datetime='2015-10-18') October 18, 2015
               a.author(href='#')
-                span.name Jane Doe
+                span.name Javier vargas
                 img(src='../images/avatar.jpg', alt='')
             .title(id="titulo", style='padding-top:2em;padding-left:1em;padding-right:1em;padding-bottom:2em;')
               p(style='line-height:1.8;text-transform: none;text-align: left;')

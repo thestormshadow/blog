@@ -3,7 +3,7 @@ var modelPosts = require('../models/ModelBlogs');
 var posts = {
     
     list: function(req, res){
-        modelPosts.list({},function(e, resp){
+        modelPosts.list({"Estatus":1},function(e, resp){
             res.render('index', { error:'', dataposts: resp });
     })
     },

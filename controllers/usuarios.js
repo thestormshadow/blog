@@ -2,9 +2,9 @@ var modelUsuarios = require('../models/Modelusuarios');
 
 var usuarios = {
     
-    list: function(req, res){
-        modelPosts.list({},function(e, resp){
-            res.render('index', { error:'', dataposts: resp });
+    get: function(req, res){
+        modelUsuarios.list({},function(e, resp){
+            res.render('usuario', { error:'', dataUsuario: resp });
         })
     }
 

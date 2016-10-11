@@ -47,6 +47,7 @@ var cuentas = {
                     Nombre:req.param('RegNombre'),
                     Apellidos:req.param('RegApellidos'),                
                     Pais:req.param('pais'),
+                    UrlAvatar:'images/avatar-new.jpg',
                     Estatus: 1
                     },function(e,resultUsuario){
                         modelCuentas.checkLogin({
@@ -79,6 +80,7 @@ var cuentas = {
                             if(respon != null){
                                 req.session.idUsuario = respon[0]._id;
                                 req.session.nombre = respon[0].Nombre;
+                                req.session.avatar = respon[0].UrlAvatar;
                                 req.session.correo = subs.resulted[0].Correo;
                                 req.session.tipousuario = subs.resulted[0].Tipo;
                                 res.redirect('/');

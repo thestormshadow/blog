@@ -5,7 +5,18 @@ var RespModel = {};
 
 RespModel.list = function(finded,callback){
     Connect(function(BLOG){
-        BLOG.posts.find(finded).sort( { Postdir: -1 } ).toArray(function(e,res){
+        BLOG.posts.aggregate([{
+            $lookup:{
+                from: "usuarios",
+                localField: "Autor",
+                foreignField: "_id",
+                as: "Autor"
+            }
+        },
+        { $unwind: "$Autor"},
+        { $match: finded },
+        { $sort: {"Postdir": -1}  }
+        ]).toArray(function(e,res){
 		if(e){
 			callback(e)
 		}else{

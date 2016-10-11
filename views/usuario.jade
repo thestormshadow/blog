@@ -1,0 +1,134 @@
+doctype html
+html
+  head
+    title Blog del Ingenio - #{dataUsuario[0].Nombre} #{dataUsuario[0].Apellidos}
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    //if lte IE 8
+      script(src='assets/js/ie/html5shiv.js')
+    link(rel='stylesheet', href='/stylesheets/main.css')
+    script(src='/javascripts/utilerias.js')
+    //if lte IE 9
+      link(rel='stylesheet', href='assets/css/ie9.css')
+    //if lte IE 8
+      link(rel='stylesheet', href='assets/css/ie8.css')
+  body.single
+    // Wrapper
+    #wrapper
+      // Header
+      header#header
+        h1
+          a(href='/') Blog del ingenio
+        nav.links
+          ul
+            li
+              a(href='/') Inicio
+            li
+              a(href='/') Mis Momentos
+            // <li><a href="#">tempus</a></li>
+            li
+              a(href='/') Contacto
+        nav.main
+          ul
+            li.search
+              a.fa-search(href='#search') Buscar
+              form#search(method='post', action='/post/find')
+                input(type='text', name='query', placeholder='Buscar')
+            li.menu
+              a.fa-bars(href='#menu') Menu
+      // Menu
+      section#menu
+        // Search
+        section
+          form.search(method='post', action='/post/find')
+            input(type='text', name='query', placeholder='Buscar')
+        // Links
+        section
+          ul.links
+            li
+              a(href='/')
+                h3 Inicio
+                p Descubre información nueva
+            li
+              a(href='/')
+                h3 Mis Momentos
+                p Mi blog personal
+            li
+              a(href='/')
+                h3 Contacto
+                p Envia comentarios y te contestaremos
+        // Actions
+        section
+            ul.actions.vertical
+                li
+                    if(session.idCuenta == null)
+                        a#login.button.big.fit(href='/cuenta/login') Iniciar Sesión
+                    else
+                        p Hola! #{session.nombre}.
+                        p 
+                        | Administra tu cuenta haciendo
+                        a(href="/cuenta/panel")  Click Aqui
+                        | .
+                        if(session.tipousuario == 2)
+                            p
+                            | Administrador Crea un post
+                            a(href="/cuenta/panel")  Click Aqui
+                            | .
+                        br
+                        br
+                        a#login.button.big.fit(href='/cuenta/login/cerrarsesion') Cerrar Sesión
+      // Main
+      #main
+        // Post
+        article.post
+          header(style='margin-bottom:0em')
+            .title
+              h2
+                a(href='javascript:void(0)') #{dataUsuario[0].Nombre} #{dataUsuario[0].Apellidos}
+                br
+                img(src='/#{dataUsuario[0].UrlAvatar}', alt='#{dataUsuario[0].Nombre} #{dataUsuario[0].Apellidos}', style='width:12em;position;float:right')
+                p(style='margin:1em;font-weight:bold;') Correo: 
+                p(style='margin-left:1em;') #{dataUsuario[0].CuentaInfo.Correo}
+                p(style='margin:1em;font-weight:bold;') Pais:
+                p(style='margin-left:1em;') #{dataUsuario[0].Pais}
+            
+            .meta(style='text-align:left;')
+                p(style='font-size: 1em;') Logros
+                img(src='/images/Medallas/mAdmin.png', style='width: 12em;')
+          
+          br
+          br
+          footer
+            h3 Posts
+          
+      // Footer
+      section#footer
+        ul.icons
+          li
+            a.fa-twitter(href='#')
+              span.label Twitter
+          li
+            a.fa-facebook(href='#')
+              span.label Facebook
+          li
+            a.fa-instagram(href='#')
+              span.label Instagram
+          li
+            a.fa-rss(href='#')
+              span.label RSS
+          li
+            a.fa-envelope(href='#')
+              span.label Email
+        p.copyright
+            | © CodeIngenius. Diseño: 
+            a(href='http://html5up.net') HTML5 UP
+            | . Imagenes: 
+            a(href='http://unsplash.com') Unsplash
+            | .
+            
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
+        script(src='/javascripts/jquery-3.1.0.min.js')
+        script(src='/javascripts/jquery.min.js')
+        script(src='/javascripts/skel.min.js')
+        script(src='/javascripts/util.js')
+        script(src='/javascripts/main.js')
