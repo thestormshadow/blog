@@ -3151,12 +3151,23 @@
 					padding: 0 0 0 1em;
 				}
 
-				#header .main .search {
+				#header .main .search{
 					display: none;
 				}
+                
 
 		}
 
+        /*JVR 11/10/2016 */
+        @media screen and (max-width: 1000px) {
+            #header .main .login{
+				display: none;
+            }
+            #header .main .search{
+					display: none;
+				}
+        }
+        
 /* Wrapper */
 
 	#wrapper {
