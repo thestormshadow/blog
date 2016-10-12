@@ -32,7 +32,7 @@ html
           ul
             li.search
               a.fa-search(href='#search') Buscar
-              form#search(method='post', action='/post/find')
+              form#search(method='post', action='/posts/find')
                 input(type='text', name='query', placeholder='Buscar')
             li.menu
               a.fa-bars(href='#menu') Menu
@@ -40,7 +40,7 @@ html
       section#menu
         // Search
         section
-          form.search(method='post', action='/post/find')
+          form.search(method='post', action='/posts/find')
             input(type='text', name='query', placeholder='Buscar')
         // Links
         section
@@ -86,11 +86,15 @@ html
               h2
                 a(href='javascript:void(0)') #{dataUsuario[0].Nombre} #{dataUsuario[0].Apellidos}
                 br
-                img(src='/#{dataUsuario[0].UrlAvatar}', alt='#{dataUsuario[0].Nombre} #{dataUsuario[0].Apellidos}', style='width:12em;position;float:right')
-                p(style='margin:1em;font-weight:bold;') Correo: 
-                p(style='margin-left:1em;') #{dataUsuario[0].CuentaInfo.Correo}
-                p(style='margin:1em;font-weight:bold;') Pais:
-                p(style='margin-left:1em;') #{dataUsuario[0].Pais}
+                img(src='/#{dataUsuario[0].UrlAvatar}', alt='#{dataUsuario[0].Nombre} #{dataUsuario[0].Apellidos}', style='width:12em;position;float:none;box-shadow: 1px 5px 30px 1px #140905;-webkit-box-shadow: 1px 5px 30px 0 #140905;margin-top:1em')
+                span(style='float:left;')
+                    p(style='margin:1em;font-weight:bold;') Correo: 
+                    p(style='margin-left:1em;margin-right:2em;') #{dataUsuario[0].CuentaInfo.Correo}
+                    p(style='margin:1em;font-weight:bold;') Pais:
+                    p(style='margin-left:1em;') #{dataUsuario[0].Pais}
+                    p(style='margin:1em;font-weight:bold;') Fecha de alta:                    
+                    p(style='margin-left:1em;')
+                        | #{dataUsuario[0].FechaAlta.getDate()}/#{(dataUsuario[0].FechaAlta.getMonth()+1)}/#{dataUsuario[0].FechaAlta.getFullYear()}
             
             .meta(style='text-align:left;')
                 p(style='font-size: 1em;') Logros

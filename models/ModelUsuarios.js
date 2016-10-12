@@ -28,7 +28,7 @@ RespModel.list = function(findData,callback){
 RespModel.registrar = function(newData,callback){
     Connect(function(BLOG){
         BLOG.usuarios.insert(newData);
-        BLOG.usuarios.find({"idCuenta":''+newData.idCuenta+''}).toArray(function(e,res){
+        BLOG.usuarios.find({"idCuenta":newData.idCuenta}).toArray(function(e,res){
         if(e){
 			callback(e)
 		}else{

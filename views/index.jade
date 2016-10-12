@@ -48,7 +48,7 @@ html
           
             li.search
               a.fa-search(href='#search') Buscar
-              form#search(method='post', action='/post/find')
+              form#search(method='post', action='/posts/find')
                 input(type='text', name='query', placeholder='Buscar')
                                     
             li.menu
@@ -57,7 +57,7 @@ html
       section#menu
         // Search
         section
-          form.search(method='post', action='/post/find')
+          form.search(method='post', action='/posts/find')
             input(type='text', name='query', placeholder='Buscar')
         // Links
         section
@@ -106,19 +106,19 @@ html
                     header
                         .title
                             h2
-                                a(href='/post?sif=#{item._id}') #{item.Titulo}
+                                a(href='/posts?sif=#{item._id}') #{item.Titulo}
                             p #{item.SubTitulo}
                             p(style='margin-top:-20px;')
                             code(style="float:left;") Tags:
                             each key in item.Tags
-                                form(id="my_form#{key.texttag}",method="post", action="/post/find",style="margin:0;float:left;")
+                                form(id="my_form#{key.texttag}",method="post", action="/posts/find",style="margin:0;float:left;")
                                     input(type="hidden", name="query", value="#{key.texttag}")
                                     a(href="javascript:void(0)", onclick="document.getElementById('my_form#{key.texttag}').submit();")
                                         | #{key.texttag}
                                             
                         .meta
-                            time.published(datetime='2015-11-01') #{item.Fecha}
-                            a.author(href='#')
+                            time.published() #{item.Fecha.getDate()}/#{item.Fecha.getMonth()+1}/#{item.Fecha.getFullYear()}
+                            a.author(href='/usuarios/#{item.Autor.Nick}')
                                 span.name #{item.Autor.Nombre} #{item.Autor.Apellidos}
                                 img(src='#{item.Autor.UrlAvatar}', alt='')
                     a.image.featured(href='#')
@@ -127,7 +127,7 @@ html
                     footer
                         ul.actions
                             li
-                                a.button.big(href='/post?sif=#{item._id}') Seguir Leyendo
+                                a.button.big(href='/posts?sif=#{item._id}') Seguir Leyendo
                         ul.stats
                             li
                                 a(href='#') General
@@ -165,7 +165,7 @@ html
                     header
                         h3
                             a(href='#') #{item.Titulo}
-                        time.published(datetime='2015-10-20') #{item.Fecha}
+                        time.published() #{item.Fecha.getDate()}/#{item.Fecha.getMonth()+1}/#{item.Fecha.getFullYear()}
                         a.author(href='#')
                             img(src='#{item.Autor.UrlAvatar}', alt='')
                     a.image(href='#')
@@ -180,7 +180,7 @@ html
                             header
                                 h3
                                     a(href='#') #{item.Titulo}
-                                time.published(datetime='2015-10-20') #{item.Fecha}
+                                time.published() #{item.Fecha.getDate()}/#{item.Fecha.getMonth()+1}/#{item.Fecha.getFullYear()}
                             a.image(href='#')
                                 img(src='#{item.UrlPortada}', alt='')
         // About

@@ -32,7 +32,7 @@ html
           ul
             li.search
               a.fa-search(href='#search') Buscar
-              form#search(method='post', action='/post/find')
+              form#search(method='post', action='/posts/find')
                 input(type='text', name='query', placeholder='Buscar')
             li.menu
               a.fa-bars(href='#menu') Menu
@@ -40,7 +40,7 @@ html
       section#menu
         // Search
         section
-          form.search(method='post', action='/post/find')
+          form.search(method='post', action='/posts/find')
             input(type='text', name='query', placeholder='Buscar')
         // Links
         section
@@ -87,8 +87,8 @@ html
                 a(href='#') #{datapost[0].Titulo}
               p #{datapost[0].SubTitulo}
             .meta
-              time.published(datetime='2015-11-01') #{datapost[0].Fecha}
-              a.author(href='#')
+              time.published() #{datapost[0].Fecha.getDate()}/#{datapost[0].Fecha.getMonth()+1}/#{datapost[0].Fecha.getFullYear()}
+              a.author(href='/usuarios/#{datapost[0].Autor.Nick}')
                 span.name #{datapost[0].Autor.Nombre} #{datapost[0].Autor.Apellidos}
                 img(src='images/avatar.jpg', alt='')
           span.image.featured
@@ -99,7 +99,7 @@ html
           p(style='')
           code Tags:
                 each key in datapost[0].Tags
-                    form(id="my_form#{key.texttag}",method="post", action="/post/find",style="margin:0;float:left;")
+                    form(id="my_form#{key.texttag}",method="post", action="/posts/find",style="margin:0;float:left;")
                         input(type="hidden", name="query", value="#{key.texttag}")
                     a(href="javascript:void(0)", onclick="document.getElementById('my_form#{key.texttag}').submit();")  #{key.texttag}
           br

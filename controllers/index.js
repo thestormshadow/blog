@@ -8,7 +8,7 @@ module.exports = function(app){
     //Posts
     '/': {
         get: postsController.posts.list,
-        'post':{
+        'posts':{
             get: postsController.posts.get,
             '/find':{
             post: postsController.posts.post
@@ -36,8 +36,8 @@ module.exports = function(app){
     },
         
     //Usuarios
-    '/usuario':{
-        '/:uid':{
+    '/usuarios':{
+        '/:nick':{
             get: usuariosController.usuarios.get
         }
     },
