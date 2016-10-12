@@ -95,6 +95,32 @@ var cuentas = {
                 })
             }
     },
+    
+    postSessionAjax: function(req, res){
+        if(req.param('isUsuario') != "" && req.param('isPassword') != "")
+            {       
+                modelCuentas.checkLogin({Usuario:req.param('isUsuario'), Password:req.param('isPassword')}, function(e, subs){
+                    if(subs.Responseprop == true){                
+                       req.session.idCuenta = subs.resulted[0]._id; 
+                       modelUsuarios.list({"idCuenta":subs.resulted[0]._id}, function(e,respon){
+                            if(respon != null){
+                                req.session.idUsuario = respon[0]._id;
+                                req.session.nombre = respon[0].Nombre;
+                                req.session.avatar = respon[0].UrlAvatar;
+                                req.session.correo = subs.resulted[0].Correo;
+                                req.session.tipousuario = subs.resulted[0].Tipo;
+                                res.send(true);
+                            }
+                        }) 
+                    }else{
+                        res.send('false');
+                    }
+                })
+            }
+        else{
+            res.send('false');
+        }
+    },
 
     delSession: function(req, res){
         req.session.destroy(function(err){

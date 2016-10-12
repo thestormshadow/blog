@@ -4,7 +4,6 @@ var usuarios = {
     
     get: function(req, res){
         modelUsuarios.list({Nick:req.params.nick},function(e, resp){
-            console.log(resp);
             if(resp.length != 0){
                 res.render('usuario', { error:'', dataUsuario: resp });
             }

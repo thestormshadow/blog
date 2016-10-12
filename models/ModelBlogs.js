@@ -26,6 +26,43 @@ RespModel.list = function(finded,callback){
 })
 }
 
+RespModel.comentariosPost = function(finder,callback){
+    Connect(function(BLOG){
+        BLOG.comentariosPost.aggregate([{
+            $lookup:{
+                from: "usuarios",
+                localField: "idUsuario",
+                foreignField: "_id",
+                as: "Autor"
+            }
+        },
+        { $unwind: "$Autor"},
+        { $match: finder }
+        ]).toArray(function(e,res){
+		if(e){
+			callback(e)
+		}else{
+			callback(null, res)
+		}
+	})
+})
+}
+
+RespModel.registrarComentario = function (newData){
+    Connect(function(BLOG){               
+			     BLOG.comentariosPost.insert(newData);
+    })
+}
+
+RespModel.ActualizarComentario = function(finder){
+    Connect(function(BLOG){
+        BLOG.comentariosPost.updateOne(finder,
+        {
+            $inc: { Like: 1 }
+        })
+    })
+}
+
 RespModel.getObjectId = function(id){
     return ObjectID.createFromHexString(id);
 }

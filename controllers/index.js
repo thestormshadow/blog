@@ -13,6 +13,12 @@ module.exports = function(app){
             '/find':{
             post: postsController.posts.post
             },
+            '/postcomentario':{
+                post: postsController.posts.postComent,
+                '/postcomentlikeajax':{
+                    post: postsController.posts.postLikeComentAjax
+                }
+            }
         },
     },    
         
@@ -23,6 +29,9 @@ module.exports = function(app){
             '/checklogin':{
             post: cuentasController.cuentas.postSession
             },
+            '/checkloginajax':{
+            post: cuentasController.cuentas.postSessionAjax
+            },            
             '/cerrarsesion':{
             get: cuentasController.cuentas.delSession
             }
