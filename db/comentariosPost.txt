@@ -1,0 +1,9 @@
+{
+    "_id" : ObjectId("57e209cd5bd491b2a58dd6d1"),
+    "idPost" : ObjectId("57e1f90c5bd491b2a58dd6cf"),
+    "idUsuario" : ObjectId("57fe4c2599dbd11b302d9a61"),
+    "Contenido" : "Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba",
+    "Fecha" : ISODate("2016-10-11T10:19:00.389Z"),
+    "Like" : 20,
+    "Estatus" : 1
+}
