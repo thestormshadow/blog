@@ -1,0 +1,11 @@
+{
+    "_id" : ObjectId("57fda326a7523c0e7c8c9d6d"),
+    "idCuenta" : ObjectId("57fda326a7523c0e7c8c9d6c"),
+    "Nombre" : "Jonathan",
+    "Apellidos" : "Vargas",
+    "Nick" : "JonathanVargas",
+    "Pais" : "Estados Unidos",
+    "UrlAvatar" : "images/avatar-new.jpg",
+    "FechaAlta" : ISODate("2016-10-11T10:19:00.389Z"),
+    "Estatus" : 1
+}

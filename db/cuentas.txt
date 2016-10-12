@@ -1,0 +1,10 @@
+{
+    "_id" : ObjectId("57e5e5f20a04c32c16c560e4"),
+    "Usuario" : "123",
+    "Password" : "123",
+    "Correo" : "shadow_vega_link@hotmail.com",
+    "Tipo" : 2,
+    "AvisoPrivacidad" : 1,
+    "CorreoConfirm" : 1,
+    "Estatus" : 1
+}

@@ -1,0 +1,20 @@
+{
+    "_id" : ObjectId("57e1f90c5bd491b2a58dd6cf"),
+    "Postdir" : 101,
+    "Titulo" : "Hola soy el titulo 1",
+    "SubTitulo" : "SubTitulo 1",
+    "Autor" : ObjectId("57fda326a7523c0e7c8c9d6d"),
+    "Like" : 30,
+    "Contenido" : "El primer amanecer para este sitio comienza asi... 1",
+    "Fecha" : ISODate("2016-10-11T10:19:00.389Z"),
+    "UrlPortada" : "/images/pic03.jpg",
+    "Tags" : [ 
+        {
+            "texttag" : "#Hola1"
+        }, 
+        {
+            "texttag" : "#Hola2"
+        }
+    ],
+    "Estatus" : 1
+}
