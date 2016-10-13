@@ -90,7 +90,7 @@ html
             .meta
               time.published() #{datapost[0].Fecha.getDate()}/#{datapost[0].Fecha.getMonth()+1}/#{datapost[0].Fecha.getFullYear()}
               a.author(href='/usuarios/#{datapost[0].Autor.Nick}')
-                span.name #{datapost[0].Autor.Nombre} #{datapost[0].Autor.Apellidos}
+                span.name(style='display:block;') #{datapost[0].Autor.Nombre} #{datapost[0].Autor.Apellidos}
                 img(src='#{datapost[0].Autor.UrlAvatar}', alt='')
           span.image.featured
             img(src='#{datapost[0].UrlPortada}', alt='')
@@ -141,7 +141,7 @@ html
                     .meta(style='border-right: solid 1px rgba(160, 160, 160, 0.3);padding-top:1em;padding-bottom:auto;')
                       time.published() #{coment.Fecha.getDate()}/#{coment.Fecha.getMonth()+1}/#{coment.Fecha.getFullYear()}
                       a.author(href='#')
-                        span.name #{coment.Autor.Nombre} #{coment.Autor.Apellidos}
+                        span.name(style='display:block;') #{coment.Autor.Nombre} #{coment.Autor.Apellidos}
                         img(src='/#{coment.Autor.UrlAvatar}', alt='')
                     .title(style='padding: 2em 1em 0em 1em;')
                       p #{coment.Contenido}

@@ -119,7 +119,7 @@ html
                         .meta
                             time.published() #{item.Fecha.getDate()}/#{item.Fecha.getMonth()+1}/#{item.Fecha.getFullYear()}
                             a.author(href='/usuarios/#{item.Autor.Nick}')
-                                span.name #{item.Autor.Nombre} #{item.Autor.Apellidos}
+                                span.name(style='display:block;') #{item.Autor.Nombre} #{item.Autor.Apellidos}
                                 img(src='#{item.Autor.UrlAvatar}', alt='')
                     a.image.featured(href='#')
                         img(src='#{item.UrlPortada}', alt='')
@@ -132,9 +132,9 @@ html
                             li
                                 a(href='#') General
                             li
-                                a.icon.fa-heart(href='#') #{item.Like}
+                                a.icon.fa-heart(href='javascript:void(0)') #{item.Like}
                             li
-                                a.icon.fa-comment(href='#') 128
+                                a.icon.fa-comment(href='javascript:void(0)') 128
         
         // Pagination
         ul.actions.pagination(style='')
