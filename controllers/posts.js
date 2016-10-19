@@ -5,6 +5,7 @@ var posts = {
     
     list: function(req, res){
         modelPosts.list({"Estatus":1},function(e, resp){
+            console.log(resp);
             res.render('index', { error:'', dataposts: resp });
     })
     },
