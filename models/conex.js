@@ -4,7 +4,7 @@ var mongodb = require('mongodb'),
 //var db;
 var BLOG = {};
 //MongoClient.connect("mongodb://localhost:27017/blogjvr94", function(err, database) {
-MongoClient.connect("mongodb://wwwcodeingenius:25661483@waffle.modulusmongo.net:27017/r6asEmen", function(err, database) {
+MongoClient.connect("mongodb://blogjvr94:25661483@ds045632.mlab.com:45632/blogjvr94", function(err, database) {
     if(err) throw err;
     BLOG.db = database;
     BLOG.posts = database.collection('posts');
