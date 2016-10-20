@@ -26,7 +26,7 @@
 			$body.addClass('is-loading');
 
 			$window.on('load', function() {
-				alert("Hola!");
+				console.log($(".setmes")[0].html);
 				window.setTimeout(function() {
 					$body.removeClass('is-loading');
 				}, 100);
