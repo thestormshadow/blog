@@ -140,7 +140,7 @@ html
                 header
                     .meta(style='border-right: solid 1px rgba(160, 160, 160, 0.3);padding-top:1em;padding-bottom:auto;')
                       time.published() #{coment.Fecha.getDate()}/#{coment.Fecha.getMonth()+1}/#{coment.Fecha.getFullYear()}
-                      a.author(href='#')
+                      a.author(href='/usuarios/#{coment.Autor.Nick}')
                         span.name(style='display:block;') #{coment.Autor.Nombre} #{coment.Autor.Apellidos}
                         img(src='/#{coment.Autor.UrlAvatar}', alt='')
                     .title(style='padding: 2em 1em 0em 1em;')
