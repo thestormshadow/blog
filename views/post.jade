@@ -149,7 +149,7 @@ html
                       div(style='text-align: right;')
                         span(style='margin-left:20px;margin-right:20px;')
                           a.icon.fa-heart(id='likePost#{coment._id}', href='javascript:void(0)', onclick='sendLikeComent(this,"#{coment._id}")') #{coment.Like}
-                        | |cuenta #{session.idCuenta} autor #{coment.Autor._id}
+                        | |cuenta #{session.idUsuario} autor #{coment.Autor._id}
                         span(style='margin-left:20px;margin-right:20px;')
                           a.icon.fa-comment(href='javascript:void(0);', onclick="disablethis('#{coment._id}');") 2
                       div(id='#{coment._id}', style='display:none;')
