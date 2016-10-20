@@ -111,6 +111,11 @@ html
                 a.icon.fa-heart(href='javascript:void(0)') #{datapost[0].Like}
               li
                 a.icon.fa-comment(href='javascript:void(0)') 128
+              if(session.idUsuario == datapost[0].Autor._id)
+                li
+                  a.icon.fa-pencil-square-o(href='javascript:void(0);', onclick="") Editar
+                li
+                  a.icon.fa-times(href='javascript:void(0);', onclick="") Eliminar
       article.post(style='margin: 0 0 0 0;')
           h3 Crear Comentario        
           .12u
