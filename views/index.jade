@@ -168,7 +168,10 @@ html
                     header
                         h3
                             a(href='#') #{item.Titulo}
-                        time.published() #{item.Fecha.getDate()}/#{item.Fecha.getMonth()+1}/#{item.Fecha.getFullYear()}
+                        time.published()
+                          span(class="setmes")
+                            | #{item.Fecha.getMonth()+1}
+                          |  #{item.Fecha.getDate()}, #{item.Fecha.getFullYear()}
                         a.author(href='#')
                             img(src='#{item.Autor.UrlAvatar}', alt='')
                     a.image(href='#')
@@ -183,7 +186,10 @@ html
                             header
                                 h3
                                     a(href='#') #{item.Titulo}
-                                time.published() #{item.Fecha.getDate()}/#{item.Fecha.getMonth()+1}/#{item.Fecha.getFullYear()}
+                                time.published()
+                                  span(class="setmes")
+                                    | #{item.Fecha.getMonth()+1}
+                                  |  #{item.Fecha.getDate()}, #{item.Fecha.getFullYear()}
                             a.image(href='#')
                                 img(src='#{item.UrlPortada}', alt='')
         // About
