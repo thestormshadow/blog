@@ -1,4 +1,4 @@
-var modelUsuarios = require('../models/Modelusuarios');
+var modelUsuarios = require('../models/ModelUsuarios');
 
 var usuarios = {
     
