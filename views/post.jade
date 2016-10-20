@@ -147,7 +147,7 @@ html
                       p #{coment.Contenido}
                       hr(style='margin:0;')
                       div(style='text-align: right;')
-                        if(session.idUsuario == coment.Autor._id)
+                        if(session.idUsuario != coment.Autor._id)
                           span(style='margin-left:20px;margin-right:20px;')
                             a.icon.fa-heart(id='likePost#{coment._id}', href='javascript:void(0)', onclick='sendLikeComent(this,"#{coment._id}")') #{coment.Like}
                           | |
