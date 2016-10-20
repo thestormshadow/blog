@@ -27,7 +27,44 @@
 
 			$window.on('load', function() {
 				$(".setmes").each(function(index){
-					console.log(index+': '+$( this ).text());
+					switch($( this ).text()){
+						case "01":
+							$( this ).text() = "Enero";
+							break;
+						case "02":
+							$( this ).text() = "Febrero";
+							break;
+						case "03":
+							$( this ).text() = "Marzo";
+							break;
+						case "04":
+							$( this ).text() = "Abril";
+							break;
+						case "05":
+							$( this ).text() = "Mayo";
+							break;
+						case "06":
+							$( this ).text() = "Junio";
+							break;
+						case "07":
+							$( this ).text() = "Julio";
+							break;
+						case "08":
+							$( this ).text() = "Agosto";
+							break;
+						case "09":
+							$( this ).text() = "Septiembre";
+							break;
+						case "10":
+							$( this ).text() = "Octubre";
+							break;
+						case "11":
+							$( this ).text() = "Nobiembre";
+							break;
+						case "12":
+							$( this ).text() = "Diciembre";
+							break;
+					}
 				});
 				window.setTimeout(function() {
 					$body.removeClass('is-loading');
