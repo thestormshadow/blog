@@ -149,11 +149,9 @@ html
                       div(style='text-align: right;')
                         span(style='margin-left:20px;margin-right:20px;')
                           a.icon.fa-heart(id='likePost#{coment._id}', href='javascript:void(0)', onclick='sendLikeComent(this,"#{coment._id}")') #{coment.Like}
-                        | |
+                        | |#{session.idCuenta} #{coment.Autor._id}
                         span(style='margin-left:20px;margin-right:20px;')
                           a.icon.fa-comment(href='javascript:void(0);', onclick="disablethis('#{coment._id}');") 2
-                          if(session.idCuenta == coment.Autor._id)
-                            a.icon.fa-comment(href='javascript:void(0);', onclick="disablethis('#{coment._id}');") 2
                       div(id='#{coment._id}', style='display:none;')
                         article.post(style='margin: 0 0 0 0;padding: 1em 1em 0em 1em;')
                           h3 Responder Comentario
