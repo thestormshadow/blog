@@ -76,7 +76,10 @@ html
                                         a(href="javascript:void(0)", onclick="document.getElementById('my_form#{key.texttag}').submit();")  #{key.texttag}       
                                                 
                             .meta
-                                time.published() #{item.Fecha.getDate()}/#{item.Fecha.getMonth()+1}/#{item.Fecha.getFullYear()}
+                                time.published(datetime="#{item.Fecha.getDate()}/#{item.Fecha.getMonth()+1}/#{item.Fecha.getFullYear()}")
+                                  span(class="setmes")
+                                    | #{item.Fecha.getMonth()+1}
+                                  |  #{item.Fecha.getDate()}, #{item.Fecha.getFullYear()}
                                 a.author(href='#')
                                     span.name #{item.Autor.Nombre} #{item.Autor.Apellidos}
                                     img(src='/#{item.Autor.UrlAvatar}', alt='')

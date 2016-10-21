@@ -117,7 +117,7 @@ html
                                         | #{key.texttag}
                                             
                         .meta
-                            time.published()
+                            time.published(datetime="#{item.Fecha.getDate()}/#{item.Fecha.getMonth()+1}/#{item.Fecha.getFullYear()}")
                               span(class="setmes")
                                 | #{item.Fecha.getMonth()+1}
                               |  #{item.Fecha.getDate()}, #{item.Fecha.getFullYear()}
@@ -168,7 +168,7 @@ html
                     header
                         h3
                             a(href='#') #{item.Titulo}
-                        time.published()
+                        time.published(datetime="#{item.Fecha.getDate()}/#{item.Fecha.getMonth()+1}/#{item.Fecha.getFullYear()}")
                           span(class="setmes")
                             | #{item.Fecha.getMonth()+1}
                           |  #{item.Fecha.getDate()}, #{item.Fecha.getFullYear()}
@@ -186,7 +186,7 @@ html
                             header
                                 h3
                                     a(href='#') #{item.Titulo}
-                                time.published()
+                                time.published(datetime="#{item.Fecha.getDate()}/#{item.Fecha.getMonth()+1}/#{item.Fecha.getFullYear()}")
                                   span(class="setmes")
                                     | #{item.Fecha.getMonth()+1}
                                   |  #{item.Fecha.getDate()}, #{item.Fecha.getFullYear()}

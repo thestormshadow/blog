@@ -101,9 +101,27 @@ html
                 img(src='/images/Medallas/madmin.png', style='width: 12em;')
           
           br
-          br
-          footer
-            h3 Posts
+          h3 Posts
+          footer         
+            .table-wrapper(style="width:100%;")
+                table
+                    thead
+                      tr
+                        th Titulo
+                        th SubTitulo                        
+                        th Likes
+                    tbody
+                    each post in dataUsuario[0].PostsInfo
+                      tr
+                        td 
+                            a(href='/posts?sif=#{post._id}') #{post.Titulo}
+                        td 
+                            a(href='/posts?sif=#{post._id}') #{post.SubTitulo}
+                        td #{post.Like}
+                    tfoot
+                      tr
+                        td(colspan='2')
+                        td Total: #{dataUsuario[0].PostsInfo.length}
           
       // Footer
       section#footer
