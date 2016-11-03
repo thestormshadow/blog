@@ -17,6 +17,12 @@ module.exports = function(app){
                 post: postsController.posts.postComent,
                 '/postcomentlikeajax':{
                     post: postsController.posts.postLikeComentAjax
+                },
+                '/delcoment':{
+                    post: postsController.posts.delComent
+                },
+                '/editcoment':{
+                    post: postsController.posts.editComent
                 }
             }
         },

@@ -7,8 +7,11 @@ html
     //if lte IE 8
       script(src='assets/js/ie/html5shiv.js')
     link(rel='stylesheet', href='/stylesheets/main.css')
+    script(src='/javascripts/jquery-3.1.0.min.js')
     script(src='/javascripts/utilerias.js')
-    script(src='/javascripts/postsComentsForm.js')
+    script(src='/javascripts/texteditor/tinymce.min.js')
+    script(src='/javascripts/jspdf.debug.js')
+    script(src='/javascripts/postsComentsForm.js')        
     //if lte IE 9
       link(rel='stylesheet', href='assets/css/ie9.css')
     //if lte IE 8
@@ -145,7 +148,7 @@ html
             h1 Comentarios
         article#commentscontent.post
             each coment in datacoments
-                header
+                header(id="com#{coment._id}")
                     .meta(style='border-right: solid 1px rgba(160, 160, 160, 0.3);padding-top:1em;padding-bottom:auto;')
                       time.published(datetime="#{coment.Fecha.getDate()}/#{coment.Fecha.getMonth()+1}/#{coment.Fecha.getFullYear()}")
                         span(class="setmes")
@@ -155,7 +158,7 @@ html
                         span.name(style='display:block;') #{coment.Autor.Nombre} #{coment.Autor.Apellidos}
                         img(src='/#{coment.Autor.UrlAvatar}', alt='')
                     .title(style='padding: 2em 1em 0em 1em;')
-                      p #{coment.Contenido}
+                      div(id='content#{coment._id}',class='enginediv', sourcehtm='#{coment.Contenido}')
                       hr(style='margin:0;')
                       div(style='text-align: right;')
                         if(session.idUsuario != coment.Autor._id)
@@ -170,10 +173,10 @@ html
                         if(session.idUsuario == coment.Autor._id)
                           | |
                           span(style='margin-left:20px;margin-right:20px;')
-                            a.icon.fa-pencil-square-o(href='javascript:void(0);', onclick="") Editar
+                            a.icon.fa-pencil-square-o(href='javascript:void(0);', sourcecom="#{coment._id}", onclick="editarComentario(this)") Editar
                           | |
                           span(style='margin-left:20px;margin-right:20px;')
-                            a.icon.fa-times(href='javascript:void(0);', onclick="") Eliminar
+                            a.icon.fa-times(href='javascript:void(0);',sourcecom="#{coment._id}", onclick="eliminaComentario(this)") Eliminar
                       div(id='#{coment._id}', style='display:none;')
                         article.post(style='margin: 0 0 0 0;padding: 1em 1em 0em 1em;')
                           h3 Responder Comentario
@@ -190,23 +193,7 @@ html
                 
           
       // Footer
-      section#footer
-        ul.icons
-          li
-            a.fa-twitter(href='#')
-              span.label Twitter
-          li
-            a.fa-facebook(href='#')
-              span.label Facebook
-          li
-            a.fa-instagram(href='#')
-              span.label Instagram
-          li
-            a.fa-rss(href='#')
-              span.label RSS
-          li
-            a.fa-envelope(href='#')
-              span.label Email
+      section#footer        
         p.copyright
             | © CodeIngenius. Diseño: 
             a(href='http://html5up.net') HTML5 UP

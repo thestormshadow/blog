@@ -54,6 +54,18 @@ RespModel.registrarComentario = function (newData){
     })
 }
 
+RespModel.actualizaComentario = function (Data,newData){
+    Connect(function(BLOG){               
+			     BLOG.comentariosPost.update(Data,{ $set: newData });
+    })
+}
+
+RespModel.eliminaComentario = function (Data){
+    Connect(function(BLOG){               
+			     BLOG.comentariosPost.update(Data,{ $set: {Estatus:0} });
+    })
+}
+
 RespModel.ActualizarComentario = function(finder){
     Connect(function(BLOG){
         BLOG.comentariosPost.updateOne(finder,

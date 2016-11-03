@@ -54,6 +54,20 @@ var posts = {
         res.send('OK');
         
     },
+    editComent:function(req, res){
+        var hex = /[0-9A-Fa-f]{6}/g;
+        var idcoment = (hex.test(req.param('idComent')))? ObjectID(req.param('idComent')) : req.param('idComent');
+        modelPosts.actualizaComentario({"_id":idcoment},{"Contenido":req.param('contenido')});
+        res.send('OK');
+    },
+    delComent: function(req, res){
+        var hex = /[0-9A-Fa-f]{6}/g;
+        var idcoment = (hex.test(req.param('idComent')))? ObjectID(req.param('idComent')) : req.param('idComent');
+        modelPosts.eliminaComentario({
+            "_id":idcoment
+        });
+        res.send('OK');
+    },
     postLikeComentAjax: function(req, res){
         var hex = /[0-9A-Fa-f]{6}/g;
         var idComent = (hex.test(req.param('idComent')))? ObjectID(req.param('idComent')) : req.param('idComent');
