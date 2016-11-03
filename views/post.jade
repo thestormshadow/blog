@@ -148,7 +148,7 @@ html
             h1 Comentarios
         article#commentscontent.post
             each coment in datacoments
-                header(id="com#{coment._id}", style="text-transform: none;")
+                header(id="com#{coment._id}")
                     .meta(style='border-right: solid 1px rgba(160, 160, 160, 0.3);padding-top:1em;padding-bottom:auto;')
                       time.published(datetime="#{coment.Fecha.getDate()}/#{coment.Fecha.getMonth()+1}/#{coment.Fecha.getFullYear()}")
                         span(class="setmes")
@@ -158,7 +158,7 @@ html
                         span.name(style='display:block;') #{coment.Autor.Nombre} #{coment.Autor.Apellidos}
                         img(src='/#{coment.Autor.UrlAvatar}', alt='')
                     .title(style='padding: 2em 1em 0em 1em;')
-                      div(id='content#{coment._id}',class='enginediv', sourcehtm='#{coment.Contenido}')
+                      div(id='content#{coment._id}',class='enginediv', sourcehtm='#{coment.Contenido}', style="text-transform: none;")
                       hr(style='margin:0;')
                       div(style='text-align: right;')
                         if(session.idUsuario != coment.Autor._id)
