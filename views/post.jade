@@ -148,7 +148,7 @@ html
             h1 Comentarios
         article#commentscontent.post
             each coment in datacoments
-                header(id="com#{coment._id}")
+                header(id="com#{coment._id}", style="text-transform: none;")
                     .meta(style='border-right: solid 1px rgba(160, 160, 160, 0.3);padding-top:1em;padding-bottom:auto;')
                       time.published(datetime="#{coment.Fecha.getDate()}/#{coment.Fecha.getMonth()+1}/#{coment.Fecha.getFullYear()}")
                         span(class="setmes")
