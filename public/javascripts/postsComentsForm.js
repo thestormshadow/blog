@@ -200,6 +200,7 @@ function editarComentario(item){
 }
 
 function eliminaComentario(item){
+            toastr.warning('Estas a punto de eliminar un comentario.');
             var r = confirm("Estas seguro de eliminar este comentario?");
             if (r == true) {
                 $.ajax({
