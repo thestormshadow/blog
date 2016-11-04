@@ -209,6 +209,7 @@ function eliminaComentario(item){
                     dataType: "html"
                 }).done(function(res) {
                     $("#com"+item.getAttribute("sourcecom")).fadeOut();
+                    toastr.success('Comentario eliminado correctamente!');
                 }).fail(function(e) {
                     alert("Error: "+e);
                 });
