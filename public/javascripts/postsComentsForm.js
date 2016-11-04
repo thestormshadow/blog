@@ -44,6 +44,7 @@ function sendDisLikeComent(a,idComentario,idUsuario){
                 data: { idComent:idComentario,idUsuario:idUsuario },
                 dataType: "html"
             }).done(function(res) {
+                toastr.warning('Ya no te gusta este comentario.');
                 var value = a.innerHTML;
                 a.innerHTML=parseInt(value)-1;
                 a.setAttribute('onclick','sendLikeComent(this,"'+idComentario+'","'+idUsuario+'")');
@@ -60,6 +61,7 @@ function sendLikeComent(a,idComentario,idUsuario){
                 data: { idComent:idComentario,idUsuario:idUsuario },
                 dataType: "html"
             }).done(function(res) {
+                toastr.success('Te ha gustado este comentario!');
                 var value = a.innerHTML;
                 a.innerHTML=parseInt(value)+1;
                 a.setAttribute('onclick','sendDisLikeComent(this,"'+idComentario+'","'+idUsuario+'")');
