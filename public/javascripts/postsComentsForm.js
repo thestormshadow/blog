@@ -36,19 +36,42 @@ function ISession(){
                 alert("Error: "+e);
             });
 }
-
-function sendLikeComent(a,idComentario){
+    
+function sendDisLikeComent(a,idComentario,idUsuario){
     $.ajax({
-                url: "/posts/postcomentario/postcomentlikeajax",
+                url: "/posts/postcomentario/dislikecoment",
                 method: "POST",
-                data: { idComent:idComentario },
+                data: { idComent:idComentario,idUsuario:idUsuario },
+                dataType: "html"
+            }).done(function(res) {
+                var value = a.innerHTML;
+                a.innerHTML=parseInt(value)-1;
+                a.setAttribute('onclick','sendLikeComent(this,"'+idComentario+'","'+idUsuario+'")');
+                a.setAttribute('style','');
+            }).fail(function(e) {
+                alert("Error: "+e);
+            });
+}
+
+function sendLikeComent(a,idComentario,idUsuario){
+    $.ajax({
+                url: "/posts/postcomentario/likecoment",
+                method: "POST",
+                data: { idComent:idComentario,idUsuario:idUsuario },
                 dataType: "html"
             }).done(function(res) {
                 var value = a.innerHTML;
                 a.innerHTML=parseInt(value)+1;
+                a.setAttribute('onclick','sendDisLikeComent(this,"'+idComentario+'","'+idUsuario+'")');
+                a.setAttribute('style','color: #2ebaae !important;');
             }).fail(function(e) {
                 alert("Error: "+e);
             });
+}
+
+function showdiv(event)
+{
+	console.log("En proceso");
 }
 
 function cleanComentario(){

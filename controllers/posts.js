@@ -73,6 +73,27 @@ var posts = {
         var idComent = (hex.test(req.param('idComent')))? ObjectID(req.param('idComent')) : req.param('idComent');
         modelPosts.ActualizarComentario({"_id":idComent});
         res.send('OK');
+    },
+    likeComent: function(req, res){
+        var hex = /[0-9A-Fa-f]{6}/g;
+        var idcomentario = (hex.test(req.param('idComent')))? ObjectID(req.param('idComent')) : req.param('idComent');
+        var idusuario = (hex.test(req.param('idUsuario')))? ObjectID(req.param('idUsuario')) : req.param('idUsuario');
+        modelPosts.registrarLikeComent({
+            "idComent":idcomentario,
+            "idUsuario":idusuario,
+            "Fecha":new Date()
+        });
+        res.send('OK');
+    },
+    delLikeComent: function(req,res){
+        var hex = /[0-9A-Fa-f]{6}/g;
+        var idcomentario = (hex.test(req.param('idComent')))? ObjectID(req.param('idComent')) : req.param('idComent');
+        var idusuario = (hex.test(req.param('idUsuario')))? ObjectID(req.param('idUsuario')) : req.param('idUsuario');
+        modelPosts.eliminarLikeComent({
+            "idComent":idcomentario,
+            "idUsuario":idusuario
+        });
+        res.send('OK');
     }
 };
 

@@ -1,5 +1,8 @@
 {
     "jscodehints.detectedExclusions": [
-        "C:/blog/public/javascripts/texteditor/themes/modern/theme.min.js"
+        "C:/blog/public/javascripts/texteditor/themes/modern/theme.min.js",
+        "C:/blog/models/ModelCuentas.js",
+        "C:/blog/app.js",
+        "C:/blog/models/ModelUsuarios.js"
     ]
 }

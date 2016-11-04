@@ -23,6 +23,12 @@ module.exports = function(app){
                 },
                 '/editcoment':{
                     post: postsController.posts.editComent
+                },
+                '/likecoment':{
+                    post: postsController.posts.likeComent
+                },
+                '/dislikecoment':{
+                    post: postsController.posts.delLikeComent
                 }
             }
         },

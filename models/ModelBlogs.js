@@ -37,6 +37,14 @@ RespModel.comentariosPost = function(finder,callback){
             }
         },
         { $unwind: "$Autor"},
+        {
+            $lookup:{
+                from: "comentariosLike",
+                localField: "_id",
+                foreignField: "idComent",
+                as: "LikesInfo"
+            }
+        },
         { $match: finder }
         ]).toArray(function(e,res){
 		if(e){
@@ -72,6 +80,18 @@ RespModel.ActualizarComentario = function(finder){
         {
             $inc: { Like: 1 }
         })
+    })
+}
+
+RespModel.registrarLikeComent = function(newLike){
+    Connect(function(BLOG){
+        BLOG.comentariosLike.insert(newLike);
+    })
+}
+
+RespModel.eliminarLikeComent = function(dataLike){
+    Connect(function(BLOG){
+        BLOG.comentariosLike.remove(dataLike);
     })
 }
 

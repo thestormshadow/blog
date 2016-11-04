@@ -146,6 +146,10 @@ html
           
           div(style='margin-bottom:40px;text-align:center;margin-top:40px;')
             h1 Comentarios
+            #flotante(onmouseout="this.style.display='none'", onclick="this.style.display='none'", onmouseover="this.style.display='block'")
+              a(href='http://www.lawebdelprogramador.com', target='_blank') Código de La Web del Programador
+              br
+              span#posicion
         article#commentscontent.post
             each coment in datacoments
                 header(id="com#{coment._id}")
@@ -164,9 +168,18 @@ html
                         if(session.idUsuario != coment.Autor._id)
                           span(style='margin-left:20px;margin-right:20px;')
                           if(session.idCuenta == null)
-                            a.icon.fa-heart(id='likePost#{coment._id}', href='/cuenta/login', onclick='') #{coment.Like}
+                            a.icon.fa-heart(id='likePost#{coment._id}', href='/cuenta/login', onclick='') #{coment.LikesInfo.length}
                           else
-                            a.icon.fa-heart(id='likePost#{coment._id}', href='javascript:void(0)', onclick='sendLikeComent(this,"#{coment._id}")') #{coment.Like}
+                            - var ident = 0;
+                            each usrcoment in coment.LikesInfo
+                                if(usrcoment.idUsuario == session.idUsuario)
+                                    - ident++;
+                           
+                                
+                            if(ident == 0)
+                                a.icon.fa-heart(id='likePost#{coment._id}', href='javascript:void(0)', onclick='sendLikeComent(this,"#{coment._id}","#{session.idUsuario}")') #{coment.LikesInfo.length}
+                            else
+                                a.icon.fa-heart(id='likePost#{coment._id}', href='javascript:void(0)', style='color: #2ebaae !important;', onclick='sendDisLikeComent(this,"#{coment._id}","#{session.idUsuario}");',onmouseover='showdiv(event);') #{coment.LikesInfo.length}
                           |  |
                         span(style='margin-left:20px;margin-right:20px;')
                           a.icon.fa-comment(href='javascript:void(0);', onclick="disablethis('#{coment._id}');") 2
