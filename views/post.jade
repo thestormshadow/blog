@@ -146,10 +146,6 @@ html
           
           div(style='margin-bottom:40px;text-align:center;margin-top:40px;')
             h1 Comentarios
-            #flotante(onmouseout="this.style.display='none'", onclick="this.style.display='none'", onmouseover="this.style.display='block'")
-              a(href='http://www.lawebdelprogramador.com', target='_blank') Código de La Web del Programador
-              br
-              span#posicion
         article#commentscontent.post
             each coment in datacoments
                 header(id="com#{coment._id}")
