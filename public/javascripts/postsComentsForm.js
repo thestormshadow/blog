@@ -81,7 +81,8 @@ function cleanComentario(){
 
 function editarComentario(item){
     if(item.innerHTML == "Editar"){
-        var comp = $('#content'+item.getAttribute("sourcecom")).html();
+    toastr.warning('Editando Comentario.');    
+    var comp = $('#content'+item.getAttribute("sourcecom")).html();
     $('#content'+item.getAttribute("sourcecom")).html("<textarea id='edittemp"+item.getAttribute("sourcecom")+"'>"+comp+"</textarea>");
     item.innerHTML = "Guardar";
     
@@ -189,6 +190,7 @@ function editarComentario(item){
                     data: { idComent:item.getAttribute("sourcecom"),contenido:tinymce.get("edittemp"+item.getAttribute("sourcecom")).getContent() },
                     dataType: "html"
                 }).done(function(res) {          $('#content'+item.getAttribute("sourcecom")).html(tinymce.get("edittemp"+item.getAttribute("sourcecom")).getContent());
+                    toastr.success('Comentario editado correctamente!');
                     item.innerHTML = "Editar";
                 }).fail(function(e) {
                     alert("Error: "+e);
@@ -200,7 +202,6 @@ function editarComentario(item){
 }
 
 function eliminaComentario(item){
-            toastr.warning('Estas a punto de eliminar un comentario.');
             var r = confirm("Estas seguro de eliminar este comentario?");
             if (r == true) {
                 $.ajax({
