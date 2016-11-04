@@ -13,7 +13,7 @@ function mestostring(mes){
 }
 
 toastr.options = {
-		  "closeButton": true,
+		  "closeButton": false,
 		  "debug": false,
 		  "newestOnTop": false,
 		  "progressBar": true,
