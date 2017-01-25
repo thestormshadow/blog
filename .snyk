@@ -3,6 +3,6 @@ version: v1.7.0
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
-  'npm:uglify-js:20151024':
+  'npm:uglify-js:20150824':
     - jade > transformers > uglify-js:
-        patched: '2017-01-25T16:11:38.767Z'
+        patched: '2017-01-25T16:12:28.468Z'
