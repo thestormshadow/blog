@@ -1,0 +1,4 @@
+{"_id":{"$oid":"57e5e5f20a04c32c16c560e4"},"Usuario":"123","Password":"123","Correo":"shadow_vega_link@hotmail.com","Tipo":2,"AvisoPrivacidad":1,"CorreoConfirm":1,"Estatus":1}
+{"_id":{"$oid":"580825dca5cbb40003d357d8"},"Usuario":"thestormshadow","Password":"123","Correo":"shadow_jonny_link@hotmail.com","Tipo":1,"AvisoPrivacidad":0,"CorreoConfirm":1,"Estatus":1}
+{"_id":{"$oid":"581b5cf807269e00039f6835"},"Usuario":"JuanKevin","Password":"Des4rr0ll4d0r","Correo":"ju1121an@hotmail.com","Tipo":1,"AvisoPrivacidad":0,"CorreoConfirm":1,"Estatus":1}
+{"_id":{"$oid":"581cff204ea13400030ddca8"},"Usuario":"prueba","Password":"123","Correo":"javiervargasruiz94@gmail.com","Tipo":1,"AvisoPrivacidad":0,"CorreoConfirm":1,"Estatus":1}

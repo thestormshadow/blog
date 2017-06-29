@@ -1,9 +1,9 @@
 {
-    "_id" : ObjectId("57e209cd5bd491b2a58dd6d1"),
-    "idPost" : ObjectId("57e1f90c5bd491b2a58dd6cf"),
-    "idUsuario" : ObjectId("57fe4c2599dbd11b302d9a61"),
-    "Contenido" : "Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba",
-    "Fecha" : ISODate("2016-10-11T10:19:00.389Z"),
-    "Like" : 20,
+    "_id" : ObjectId("581ad606a129a20f44b995d6"),
+    "idPost" : ObjectId("57e370f1202e57cb82b2f2b3"),
+    "idUsuario" : ObjectId("57e208ff5bd491b2a58dd6d0"),
+    "Contenido" : "<p style=\"text-align: center;\"><img src=\"javascripts/texteditor/plugins/emoticons/img/smiley-cool.gif\" alt=\"cool\" />&nbsp;<span id=\"this\" style=\"font-size: 16px;\">LO LOGRee!!! </span> <img src=\"javascripts/texteditor/plugins/emoticons/img/smiley-cool.gif\" alt=\"cool\" /></p>",
+    "Fecha" : ISODate("2016-11-03T06:15:34.029Z"),
+    "Like" : 0,
     "Estatus" : 1
 }

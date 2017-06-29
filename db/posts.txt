@@ -1,19 +1,19 @@
 {
-    "_id" : ObjectId("57e1f90c5bd491b2a58dd6cf"),
+    "_id" : ObjectId("57e370f1202e57cb82b2f2b3"),
     "Postdir" : 101,
-    "Titulo" : "Hola soy el titulo 1",
-    "SubTitulo" : "SubTitulo 1",
-    "Autor" : ObjectId("57fda326a7523c0e7c8c9d6d"),
+    "Titulo" : "Brazo robótico con sistema hidráulico",
+    "SubTitulo" : "Visualizando el futuro",
+    "Autor" : ObjectId("57e208ff5bd491b2a58dd6d0"),
     "Like" : 30,
-    "Contenido" : "El primer amanecer para este sitio comienza asi... 1",
+    "Contenido" : "La hidroneumática y los sistemas hidráulicos, han sido desde hace muchos años, algunos de los principales sistemas de automatización industrial que existen. En la actualidad, la mayoría de los robots industriales utilizan los principios de la hidráulica para mover brazos mecánicos de gran precisión combinados con sistemas de programación avanzados. En este artículo, veremos cómo hacer un brazo hidráulico simple que con un poco de imaginación se podrá convertir en un brazo robot interesante para cualquier proyecto que tengamos. Si no te quieres complicar siempre puedes comprar uno por piezas y hacerlo más fácilmente.",
     "Fecha" : ISODate("2016-10-11T10:19:00.389Z"),
-    "UrlPortada" : "/images/pic03.jpg",
+    "UrlPortada" : "/images/brobotic.jpg",
     "Tags" : [ 
         {
-            "texttag" : "#Hola1"
+            "texttag" : "#Tecnologia"
         }, 
         {
-            "texttag" : "#Hola2"
+            "texttag" : "#Mecatronica"
         }
     ],
     "Estatus" : 1
