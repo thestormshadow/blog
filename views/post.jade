@@ -155,7 +155,7 @@ html
                     .meta(style='border-right: solid 1px rgba(160, 160, 160, 0.3);padding-top:1em;padding-bottom:auto;')
                       time.published(datetime="#{coment.Fecha.getDate()}/#{coment.Fecha.getMonth()+1}/#{coment.Fecha.getFullYear()}")
                         span(class="setmes")
-                          | #{coment.Fecha.getMonth()}
+                          | #{((coment.Fecha.getMonth() + 1) < 10 ? '0' : '') + (coment.Fecha.getMonth() + 1)}
                         |  #{coment.Fecha.getDate()}, #{coment.Fecha.getFullYear()}
                       a.author(href='/usuarios/#{coment.Autor.Nick}')
                         span.name(style='display:block;') #{coment.Autor.Nombre} #{coment.Autor.Apellidos}
