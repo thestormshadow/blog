@@ -84,7 +84,7 @@ html
                                   span(class="setmes")
                                     | #{item.Fecha.getMonth()+1}
                                   |  #{item.Fecha.getDate()}, #{item.Fecha.getFullYear()}
-                                a.author(href='#')
+                                a.author(href='/usuarios/#{item.Autor.Nick}')
                                     span.name #{item.Autor.Nombre} #{item.Autor.Apellidos}
                                     img(src='/#{item.Autor.UrlAvatar}', alt='')
             else

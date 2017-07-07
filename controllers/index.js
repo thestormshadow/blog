@@ -31,7 +31,7 @@ module.exports = function(app){
                     post: postsController.posts.delLikeComent
                 }
             }
-        },
+        },        
     },    
         
     //Cuentas

@@ -26,13 +26,10 @@ html
           a(href='/') Blog del ingenio
         nav.links
           ul
-            li
-              a(href='/') Inicio
-            li
-              a(href='/') Mis Momentos
-            // <li><a href="#">tempus</a></li>
-            li
-              a(href='/') Contacto
+            if(typeof(menus) != "undefined")
+              each menu in menus
+                li
+                  a(href='#{menu.URL}') #{menu.Nombre}
         nav.main
           ul
             li.login(id="login")
@@ -66,18 +63,12 @@ html
         // Links
         section
           ul.links
-            li
-              a(href='/')
-                h3 Inicio
-                p Descubre información nueva
-            li
-              a(href='/')
-                h3 Mis Momentos
-                p Mi blog personal
-            li
-              a(href='/')
-                h3 Contacto
-                p Envia comentarios y te contestaremos
+            if(typeof(menus) != "undefined")
+              each menu in menus
+                li
+                  a(href='#{menu.URL}')
+                    h3 #{menu.Nombre}
+                    p #{menu.Descripcion}            
         // Actions
         section
             ul.actions.vertical
@@ -171,14 +162,14 @@ html
                 article.mini-post
                     header
                         h3
-                            a(href='#') #{item.Titulo}
+                            a(href='/posts?sif=#{item._id}') #{item.Titulo}
                         time.published(datetime="#{item.Fecha.getDate()}/#{item.Fecha.getMonth()+1}/#{item.Fecha.getFullYear()}")
                           span(class="setmes")
                             | #{item.Fecha.getMonth()+1}
                           |  #{item.Fecha.getDate()}, #{item.Fecha.getFullYear()}
-                        a.author(href='#')
+                        a.author(href='/usuarios/#{item.Autor.Nick}')
                             img(src='#{item.Autor.UrlAvatar}', alt='')
-                    a.image(href='#')
+                    a.image(href='/posts?sif=#{item._id}')
                         img(src='#{item.UrlPortada}', alt='')
         // Posts List
         section
@@ -189,12 +180,12 @@ html
                         article
                             header
                                 h3
-                                    a(href='#') #{item.Titulo}
+                                    a(href='/posts?sif=#{item._id}') #{item.Titulo}
                                 time.published(datetime="#{item.Fecha.getDate()}/#{item.Fecha.getMonth()+1}/#{item.Fecha.getFullYear()}")
                                   span(class="setmes")
                                     | #{item.Fecha.getMonth()+1}
                                   |  #{item.Fecha.getDate()}, #{item.Fecha.getFullYear()}
-                            a.image(href='#')
+                            a.image(href='/posts?sif=#{item._id}')
                                 img(src='#{item.UrlPortada}', alt='')
         // About
         section.blurb
