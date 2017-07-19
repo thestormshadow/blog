@@ -71,6 +71,40 @@ function sendLikeComent(a,idComentario,idUsuario){
             });
 }
 
+function sendDisLikePost(a,idPosted,idUsuario){
+    $.ajax({
+                url: "/posts/dislikepost",
+                method: "POST",
+                data: { idPost:idPosted,idUsuario:idUsuario },
+                dataType: "html"
+            }).done(function(res) {
+                toastr.warning('Ya no te gusta este Post.');
+                var value = a.innerHTML;
+                a.innerHTML=parseInt(value)-1;
+                a.setAttribute('onclick','sendLikePost(this,"'+idPosted+'","'+idUsuario+'")');
+                a.setAttribute('style','');
+            }).fail(function(e) {
+                alert("Error: "+e);
+            });
+}
+
+function sendLikePost(a,idPosted,idUsuario){
+    $.ajax({
+                url: "/posts/likepost",
+                method: "POST",
+                data: { idPost:idPosted,idUsuario:idUsuario },
+                dataType: "html"
+            }).done(function(res) {
+                toastr.success('Te ha gustado este Post!');
+                var value = a.innerHTML;
+                a.innerHTML=parseInt(value)+1;
+                a.setAttribute('onclick','sendDisLikePost(this,"'+idPosted+'","'+idUsuario+'")');
+                a.setAttribute('style','color: #2ebaae !important;');
+            }).fail(function(e) {
+                alert("Error: "+e);
+            });
+}
+
 function showdiv(event)
 {
 	console.log("En proceso");

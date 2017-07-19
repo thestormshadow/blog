@@ -8,6 +8,7 @@ html
     link(rel='stylesheet', href='/stylesheets/toastr.min.css')
     script(src='/javascripts/jquery-3.1.0.min.js')
     script(src='/javascripts/toastr.min.js')
+    script(src='/javascripts/postsComentsForm.js')
     script(src='/javascripts/utilerias.js')
     //if lte IE 
       script(src='assets/js/ie/html5shiv.js')
@@ -104,13 +105,11 @@ html
                                 a(href='/posts?sif=#{item._id}') #{item.Titulo}
                             p #{item.SubTitulo}
                             p(style='margin-top:-20px;')
-                            code(style="float:left;") Tags:
-                            each key in item.Tags
-                                form(id="my_form#{key.texttag}",method="post", action="/posts/find",style="margin:0;float:left;")
-                                    input(type="hidden", name="query", value="#{key.texttag}")
-                                    a(href="javascript:void(0)", onclick="document.getElementById('my_form#{key.texttag}').submit();")
-                                        | #{key.texttag}
-                                            
+                            code Tags:
+                                    each key in item.Tags
+                                        form(id="my_form#{key.texttag}",method="post", action="/posts/find",style="margin:0;float:left;")
+                                            input(type="hidden", name="query", value="#{key.texttag}")
+                                        a(href="javascript:void(0)", onclick="document.getElementById('my_form#{key.texttag}').submit();")  #{key.texttag}                                                                           
                         .meta
                             time.published(datetime="#{item.Fecha.getDate()}/#{item.Fecha.getMonth()+1}/#{item.Fecha.getFullYear()}")
                               span(class="setmes")
@@ -127,12 +126,25 @@ html
                             li
                                 a.button.big(href='/posts?sif=#{item._id}') Seguir Leyendo
                         ul.stats
-                            li
+                            //li
                                 a(href='#') General
                             li
-                                a.icon.fa-heart(href='javascript:void(0)') #{item.Like}
+                              if(session.idUsuario != item.Autor._id)
+                                if(session.idCuenta == null)
+                                  a.icon.fa-heart(id='likePost#{item._id}', href='/cuenta/login', onclick='') #{item.LikesPostInfo.length}
+                                else
+                                  - var ident = 0;
+                                  each usrLiked in item.LikesPostInfo
+                                    if(usrLiked.idUsuario == session.idUsuario)
+                                      - ident++;
+                                  if(ident == 0)
+                                    a.icon.fa-heart(id='likePost#{item._id}', href='javascript:void(0)', onclick='sendLikePost(this,"#{item._id}","#{session.idUsuario}")') #{item.LikesPostInfo.length}
+                                  else
+                                    a.icon.fa-heart(id='likePost#{item._id}', href='javascript:void(0)', style='color: #2ebaae !important;', onclick='sendDisLikePost(this,"#{item._id}","#{session.idUsuario}");',onmouseover='showdiv(event);') #{item.LikesPostInfo.length}
+
+                                  //a.icon.fa-heart(id='likePost#{item._id}', href='javascript:void(0)', onclick='sendLikePost(this,"#{item._id}","#{session.idUsuario}")') #{item.LikesPostInfo.length}
                             li
-                                a.icon.fa-comment(href='javascript:void(0)') 128
+                                a.icon.fa-comment(href='/posts?sif=#{item._id}') #{item.Comentarios.length}
         
         // Pagination
         ul.actions.pagination(style='')

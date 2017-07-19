@@ -13,6 +13,7 @@ MongoClient.connect("mongodb://blogjvr94:25661483@ds045632.mlab.com:45632/blogjv
     BLOG.comentariosPost = database.collection('comentariosPost');
     BLOG.comentariosLike = database.collection('comentariosLike');
     BLOG.menu = database.collection('menu');
+    BLOG.postsLike = database.collection('postsLike');
     console.log("Conectado ala db correctamente");
 });
 

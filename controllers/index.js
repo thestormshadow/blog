@@ -30,8 +30,14 @@ module.exports = function(app){
                 '/dislikecoment':{
                     post: postsController.posts.delLikeComent
                 }
-            }
-        },        
+            },
+            '/likepost':{
+                post: postsController.posts.likePost
+            },
+            '/dislikepost':{
+                post: postsController.posts.delLikePost
+            }  
+        }      
     },    
         
     //Cuentas

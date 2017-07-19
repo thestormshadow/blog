@@ -21,7 +21,9 @@ new: function(req, res){
 post: function(req, res){
     var findobj = (req.body.query.includes("#")==false) ? {"Titulo": new RegExp(req.body.query, 'i')}:{"Tags.texttag": req.body.query};
     modelPosts.list(findobj,function(e, resp){
-        res.render('find', { error:'', datapost: resp });
+        modelMenus.list({"Estatus":1},function(e, respMenus){
+            res.render('find', { error:'', datapost: resp, menus: respMenus });
+        })
     })
 },
 
@@ -30,7 +32,9 @@ get: function(req, res){
     if(req.query.sif != null){
         modelPosts.list({"_id":modelPosts.getObjectId(req.query.sif),"Estatus":1},function(e, respPost){
             modelPosts.comentariosPost({"idPost":modelPosts.getObjectId(req.query.sif),"Estatus":1},function(e, respComents){
-                res.render('post', { error:'', datapost: respPost, datacoments: respComents });
+                modelMenus.list({"Estatus":1},function(e, respMenus){
+                    res.render('post', { error:'', datapost: respPost, datacoments: respComents, menus: respMenus });
+                })
             })
         })
     }
@@ -100,6 +104,29 @@ delLikeComent: function(req,res){
     var idusuario = (hex.test(req.param('idUsuario')))? ObjectID(req.param('idUsuario')) : req.param('idUsuario');
     modelPosts.eliminarLikeComent({
         "idComent":idcomentario,
+        "idUsuario":idusuario
+    });
+    res.send('OK');
+},
+
+likePost: function(req, res){
+    var hex = /[0-9A-Fa-f]{6}/g;
+    var idpost = (hex.test(req.param('idPost')))? ObjectID(req.param('idPost')) : req.param('idPost');
+    var idusuario = (hex.test(req.param('idUsuario')))? ObjectID(req.param('idUsuario')) : req.param('idUsuario');
+    modelPosts.registrarLikePost({
+        "idPost":idpost,
+        "idUsuario":idusuario,
+        "Fecha":new Date()
+    });
+    res.send('OK');
+},
+
+delLikePost: function(req,res){
+    var hex = /[0-9A-Fa-f]{6}/g;
+    var idpost = (hex.test(req.param('idPost')))? ObjectID(req.param('idPost')) : req.param('idPost');
+    var idusuario = (hex.test(req.param('idUsuario')))? ObjectID(req.param('idUsuario')) : req.param('idUsuario');
+    modelPosts.eliminarLikePost({
+        "idPost":idpost,
         "idUsuario":idusuario
     });
     res.send('OK');

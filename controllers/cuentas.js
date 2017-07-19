@@ -1,11 +1,14 @@
 var modelCuentas = require('../models/ModelCuentas');
 var modelUsuarios = require('../models/ModelUsuarios');
+var modelMenus = require('../models/ModelMenus');
 
 var cuentas = {
     
     getPageLogin: function(req, res){
         if (req.session.idCuenta == null){
-            res.render('cuenta', { type:'login' });
+            modelMenus.list({"Estatus":1},function(e, respMenus){
+            res.render('cuenta', { type:'login', menus: respMenus });
+            })
         }
         else{
             res.redirect('/');
@@ -14,20 +17,25 @@ var cuentas = {
     
     getPageRegistro: function(req, res){
         if (req.session.idCuenta == null){
-            res.render('cuenta', { type:'registro' });
+            modelMenus.list({"Estatus":1},function(e, respMenus){
+            res.render('cuenta', { type:'registro', menus: respMenus });
+            })
         }
         else{
             res.redirect('/');
         }
     },
     
-    getPagePanel: function(req, res){
+    getPagePanel: function(req, res){        
         if (req.session.idCuenta == null){
-            res.render('cuenta', { type:'registro'});
+            modelMenus.list({"Estatus":1},function(e, respMenus){
+                 res.render('cuenta', { type:'registro', menus: respMenus});
+            })
         }
         else{
             res.redirect('/');
         }
+        
     },
     
     post: function(req, res){

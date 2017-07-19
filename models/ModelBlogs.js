@@ -14,6 +14,22 @@ RespModel.list = function(finded,callback){
             }
         },
         { $unwind: "$Autor"},
+        {
+            $lookup:{
+                from: "postsLike",
+                localField: "_id",
+                foreignField: "idPost",
+                as: "LikesPostInfo"
+            }
+        },
+        {
+            $lookup:{
+                from: "comentariosPost",
+                localField: "_id",
+                foreignField: "idPost",
+                as: "Comentarios"
+            }
+        },
         { $match: finded },
         { $sort: {"Postdir": -1}  }
         ]).toArray(function(e,res){
@@ -92,6 +108,18 @@ RespModel.registrarLikeComent = function(newLike){
 RespModel.eliminarLikeComent = function(dataLike){
     Connect(function(BLOG){
         BLOG.comentariosLike.remove(dataLike);
+    })
+}
+
+RespModel.registrarLikePost = function(newLike){
+    Connect(function(BLOG){
+        BLOG.postsLike.insert(newLike);
+    })
+}
+
+RespModel.eliminarLikePost = function(dataLike){
+    Connect(function(BLOG){
+        BLOG.postsLike.remove(dataLike);
     })
 }
 

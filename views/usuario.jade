@@ -113,6 +113,7 @@ html
                         th Titulo
                         th SubTitulo                        
                         th Likes
+                        th Comentarios
                     tbody
                     each post in dataUsuario[0].PostsInfo
                       tr
@@ -121,6 +122,7 @@ html
                         td 
                             a(href='/posts?sif=#{post._id}') #{post.SubTitulo}
                         td #{post.Like}
+                        td 0
                     tfoot
                       tr
                         td(colspan='2')

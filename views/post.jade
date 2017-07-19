@@ -28,13 +28,10 @@ html
           a(href='/') Blog del ingenio
         nav.links
           ul
-            li
-              a(href='/') Inicio
-            li
-              a(href='/') Mis Momentos
-            // <li><a href="#">tempus</a></li>
-            li
-              a(href='/') Contacto
+            if(typeof(menus) != "undefined")
+              each menu in menus
+                li
+                  a(href='#{menu.URL}') #{menu.Nombre}
         nav.main
           ul
             li.search
@@ -52,18 +49,12 @@ html
         // Links
         section
           ul.links
-            li
-              a(href='/')
-                h3 Inicio
-                p Descubre información nueva
-            li
-              a(href='/')
-                h3 Mis Momentos
-                p Mi blog personal
-            li
-              a(href='/')
-                h3 Contacto
-                p Envia comentarios y te contestaremos
+            if(typeof(menus) != "undefined")
+              each menu in menus
+                li
+                  a(href='#{menu.URL}')
+                    h3 #{menu.Nombre}
+                    p #{menu.Descripcion}
         // Actions
         section
             ul.actions.vertical
@@ -111,15 +102,26 @@ html
                 each key in datapost[0].Tags
                     form(id="my_form#{key.texttag}",method="post", action="/posts/find",style="margin:0;float:left;")
                         input(type="hidden", name="query", value="#{key.texttag}")
-                    a(href="javascript:void(0)", onclick="document.getElementById('my_form#{key.texttag}').submit();")  #{key.texttag}
+                    a(href="javascript:void(0)", onclick="document.getElementById('my_form#{key.texttag}').submit();") #{key.texttag}
           br
           br
           footer
             ul.stats
               li
-                a.icon.fa-heart(href='javascript:void(0)') #{datapost[0].Like}
+                if(session.idUsuario != datapost[0].Autor._id)
+                  if(session.idCuenta == null)
+                    a.icon.fa-heart(id='likePost#{idatapost[0]tem._id}', href='/cuenta/login', onclick='') #{datapost[0].LikesPostInfo.length}
+                  else
+                    - var ident = 0;
+                    each usrLiked in datapost[0].LikesPostInfo
+                      if(usrLiked.idUsuario == session.idUsuario)
+                        - ident++;
+                    if(ident == 0)
+                      a.icon.fa-heart(id='likePost#{datapost[0]._id}', href='javascript:void(0)', onclick='sendLikePost(this,"#{datapost[0]._id}","#{session.idUsuario}")') #{datapost[0].LikesPostInfo.length}
+                    else
+                      a.icon.fa-heart(id='likePost#{datapost[0]._id}', href='javascript:void(0)', style='color: #2ebaae !important;', onclick='sendDisLikePost(this,"#{datapost[0]._id}","#{session.idUsuario}");',onmouseover='showdiv(event);') #{datapost[0].LikesPostInfo.length}
               li
-                a.icon.fa-comment(href='javascript:void(0)') 128
+                a.icon.fa-comment(href='javascript:void(0);') #{datapost[0].Comentarios.length}
               if(session.idUsuario == datapost[0].Autor._id)
                 li
                   a.icon.fa-pencil-square-o(href='javascript:void(0);', onclick="") Editar
