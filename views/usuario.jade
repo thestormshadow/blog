@@ -24,13 +24,10 @@ html
           a(href='/') Blog del ingenio
         nav.links
           ul
-            li
-              a(href='/') Inicio
-            li
-              a(href='/') Mis Momentos
-            // <li><a href="#">tempus</a></li>
-            li
-              a(href='/') Contacto
+            if(typeof(menus) != "undefined")
+              each menu in menus
+                li
+                  a(href='#{menu.URL}') #{menu.Nombre}
         nav.main
           ul
             li.search
@@ -48,18 +45,12 @@ html
         // Links
         section
           ul.links
-            li
-              a(href='/')
-                h3 Inicio
-                p Descubre información nueva
-            li
-              a(href='/')
-                h3 Mis Momentos
-                p Mi blog personal
-            li
-              a(href='/')
-                h3 Contacto
-                p Envia comentarios y te contestaremos
+            if(typeof(menus) != "undefined")
+              each menu in menus
+                li
+                  a(href='#{menu.URL}')
+                    h3 #{menu.Nombre}
+                    p #{menu.Descripcion}
         // Actions
         section
             ul.actions.vertical
@@ -115,18 +106,18 @@ html
                         th Likes
                         th Comentarios
                     tbody
-                    each post in dataUsuario[0].PostsInfo
+                    each post in postsInfo
                       tr
                         td 
                             a(href='/posts?sif=#{post._id}') #{post.Titulo}
                         td 
                             a(href='/posts?sif=#{post._id}') #{post.SubTitulo}
-                        td #{post.Like}
-                        td 0
+                        td #{post.LikesPostInfo.length}
+                        td #{post.Comentarios.length}
                     tfoot
                       tr
                         td(colspan='2')
-                        td Total: #{dataUsuario[0].PostsInfo.length}
+                        td Total: #{postsInfo.length}
           
       // Footer
       section#footer

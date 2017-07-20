@@ -14,21 +14,22 @@ RespModel.list = function(findData,callback){
             }            
         },
         { $unwind: "$CuentaInfo"},
-        {
+        /*{
             $lookup:{
                 from: "posts",
                 localField: "_id",
                 foreignField: "Autor",
                 as: "PostsInfo"
             }            
-        },
+        },*/
         { $match: findData }
         ]).toArray(function(e,res){
 		if(e){
 			callback(e)
 		}else{
 			callback(null, res)
-		}
+        }
+        
 	})
 	})
 }
